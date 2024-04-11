@@ -11,9 +11,9 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import Home from './pages/Home';
+import Schedule from './pages/ScheduleP';
+import Payment from './pages/PaymentP';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,6 +36,20 @@ import './theme/variables.css';
 // Main CSS and TailwindCSS
 import './theme/main.css';
 
+import Icon from './components/Icon';
+import RealTime from './pages/Realtime';
+
+const pages = 
+  [
+    { name:"Home",path: '/home', component: Home, icon: "br-home" },
+    { name:"Schedule Page",path: '/schedule', component: Schedule, icon:"br-car-journey" },
+    { name:"Payment Page",path: '/payment', component: Payment, icon:"br-wallet" },
+    { name:"RealTime",path: '/realtime', component: RealTime, icon:"br-land-location" },
+    { name:"Profile",path: '/profile', component: Payment, icon:"br-admin-alt" },
+  ];
+
+
+
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -43,32 +57,25 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
+          {
+            pages.map((page, index) => (
+              <Route key={index} path={page.path} exact >
+                <page.component />
+              </Route>
+            ))
+          }
+         <Route>
+          <Redirect to="/home" />
+         </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
+        <IonTabBar slot="bottom" className='py-2 bg-blue'>
+          {
+            pages.map((page,idx) => (
+              <IonTabButton key={idx} tab={page.path} href={page.path} className='bg-blue'>
+                <Icon name={page.icon} className='text-orange text-2xl'/>
+              </IonTabButton>
+            ))
+          }
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
