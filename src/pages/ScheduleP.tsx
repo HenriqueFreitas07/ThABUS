@@ -4,8 +4,7 @@ import ExploreContainer from '../components/ExploreContainer';
 const ScheduleP: React.FC = () => {
   return (
     <IonPage>
-      <IonContent fullscreen>
-        Schedule Page
+      <IonContent fullscreen >
       </IonContent>
     </IonPage>
   );

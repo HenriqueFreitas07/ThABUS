@@ -5,17 +5,23 @@ type CardProps = {
     subtitle?: string;
     description: string;
     image?: string;
+    className?: string;
+    classContent?: string;
 }
 
-export default function Card({title, subtitle, description, image}: CardProps) {
+export default function Card({ title, subtitle, description, image, className, classContent }: CardProps) {
     return (
-        <IonCard>
-            { image != null ? <img alt={title} src={image} />: null }
-            <IonCardHeader>
-                <IonCardTitle>{title}</IonCardTitle>
-                <IonCardSubtitle>{subtitle}</IonCardSubtitle>
-            </IonCardHeader>
-            <IonCardContent>{description}</IonCardContent>
+        <IonCard className={className}>
+            {image != null ? <img alt={title} src={image} /> : null}
+            <IonCardContent className={classContent}>
+                <IonCardHeader className='p-0 text-start'>
+                    <IonCardTitle className='p-1'>{title}</IonCardTitle>
+                    <IonCardSubtitle>{subtitle}</IonCardSubtitle>
+                </IonCardHeader>
+                <div className='text-start w-full'>
+                    {description}
+                </div>
+            </IonCardContent>
         </IonCard>
     )
 }

@@ -6,17 +6,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Allerta Stencil', sans-serif;
-}
-.allerta-stencil-regular {
+*,body {
   font-family: "Allerta Stencil", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-
-
-
 
 
 .wrapper {

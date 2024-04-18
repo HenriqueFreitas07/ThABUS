@@ -11,9 +11,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
-import Home from './pages/Home';
-import Schedule from './pages/ScheduleP';
-import Payment from './pages/PaymentP';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,7 +35,12 @@ import './theme/variables.css';
 import './theme/main.css';
 
 import Icon from './components/Icon';
+
+import Home from './pages/Home';
+import Schedule from './pages/ScheduleP';
+import Payment from './pages/PaymentP';
 import RealTime from './pages/Realtime';
+import Profile from './pages/Profile';
 
 const pages = 
   [
@@ -45,7 +48,7 @@ const pages =
     { name:"Schedule Page",path: '/schedule', component: Schedule, icon:"br-car-journey" },
     { name:"Payment Page",path: '/payment', component: Payment, icon:"br-wallet" },
     { name:"RealTime",path: '/realtime', component: RealTime, icon:"br-land-location" },
-    { name:"Profile",path: '/profile', component: Payment, icon:"br-admin-alt" },
+    { name:"Profile",path: '/profile', component: Profile, icon:"br-admin-alt" },
   ];
 
 
