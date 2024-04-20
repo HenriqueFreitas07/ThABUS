@@ -22,6 +22,13 @@ Para correr a aplicação é executa-se o comando:
 ```
 
 
+Para instalar a googleMaps API:
+
+```
+npm install @react-google-maps/api use-places-autocomplete
+```
+
+
 ## Documentação
 
 Para questões adicionais estão aqui as respectivas Documentações para:

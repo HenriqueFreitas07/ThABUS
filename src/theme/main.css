@@ -15,6 +15,75 @@ body {
   font-style: normal;
 }
 
+ion-input.custom {
+  
+  --color: #dd9b39;
+  border-radius: 10px;
+  border: 3px solid #dd9b39;
+  width: 95%;
+  height: 30px;
+  margin:7px;
+  background: rgba(2, 12, 65, 0.6);
+  
+ 
+}
+ .container {
+  display: flex;
+ }
+
+.buttonLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 2px solid #8bcff6;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  height: min-content;
+  width: 80%;
+  max-height: fit-content;
+  align-items: center;
+  color: white;
+  background: rgba(53, 123, 253, 0.9);
+  position: relative;
+  
+}
+
+.buttonRight {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  float: right;
+  height: min-content;
+  width: 15%;
+  max-height: fit-content;
+  align-items: center;
+  color: white;
+  background-color: #dd9b39;
+  position: relative;
+  
+}
+
+
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 10px;
+  padding: 7px;
+  margin: 10px;
+  top: 05%;;
+  width: 95%;
+  background: rgba(0, 0, 0, 0.1);
+  
+}
+
+
 
 
 
