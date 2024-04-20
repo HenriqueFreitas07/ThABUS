@@ -2,6 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import Icon from '../components/Icon';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
+import RoutesListCard from '../components/RoutesListCard';
 
 const Home: React.FC = () => {
   const items = [
@@ -35,34 +36,9 @@ const Home: React.FC = () => {
             </div>
           </div>
           <div className='w-2/3 rounded-md h-0 border-[1px] mx-auto border-light-blue ' />
-
-          <div className='bg-light-blue border border-2 rounded-md border-orange w-4/5 p-2 mx-auto my-2 columns-2 min-h-[110px] grid-flow-col flex'>
-            <div className="grid-rows-3 w-full h-full grid-flow-row inline-block ">
-              <div className="w-full my-auto mx-auto py-1 px-2 flex">
-                <Icon name="br-marker" className='text-orange text-xl my-auto' />
-                <div className='p-2 py-0'>
-                  Origin
-                </div>
-              </div>
-              <div className="w-full">
-                <Icon name="br-tally-1" className='text-orange text-xl my-auto ml-4' />
-              </div>
-              <div className="w-full my-auto mx-auto py-1 px-2 flex">
-                <Icon name="br-land-layer-location" className='text-orange text-xl my-auto' />
-                <div className='p-2 py-0'>
-                  Destination
-                </div>
-              </div>
-            </div>
-            <div className="w-full grid-rows-2 inline-block grid-flow-row">
-              <div className="w-full">
-              HH:MM, Weekday
-              </div>
-              <div className="w-full">
-              ID iter
-              </div>
-            </div>
-          </div>
+          {/* Card */}
+          
+          {/* <RoutesListCard origin='Aveiro,Forum ' destination='Aveiro' time='10:00h, Quarta-feira' id='QW-4720' /> */}
         </div>
       </IonContent>
     </IonPage>
