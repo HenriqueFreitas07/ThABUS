@@ -56,3 +56,28 @@
   .custom-ripple {
     color: #501ace;
   }
+
+
+  .stacked-slider {
+    position: relative;
+    height: 500px; /* Adjust based on your card height and the number of cards */
+    width: 100%;
+  }
+  
+  .pass-card {
+    position: absolute;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid white;
+    left: 50%;
+    top: 50%;
+    width: 100%; /* Adjust based on your preference */
+    transition: transform 0.3s ease, z-index 0s linear 0.3s; /* Smooth transition for the transform */
+  }
+  
+  .pass-card.active {
+    transform: translate(-50%, -50%) scale(1.05); /* Slightly scale up the active card */
+    z-index: 100; /* Bring the active card to the front */
+    transition: transform 0.3s ease, z-index 0s linear; /* Transition for the active card */
+  }
+  

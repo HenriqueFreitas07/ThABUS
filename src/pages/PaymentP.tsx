@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import Icon from "../components/Icon";
 import PassCard from "../components/PassCard";
+import PassSlider from "../components/PassSlider";
 const paymentMethods = [
   {
     name: "João Quintão",
@@ -142,15 +143,7 @@ const PaymentP: React.FC = () => {
         </div>
         <div className={`w-full h-screen relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
           {/* Pass */}
-
-            {
-              // Passes
-              busPasses.map((pass, idx) => (
-                <div className={`absolute z-${idx+1} top-3 left-[50%] translate-x-[-50%]  translate-y-[ ${(idx+1)*10}px ] h-fit w-4/5 shadow-lg`} >
-                  <PassCard key={idx} zone={pass.zone} valid={pass.valid} className="" />
-                </div>
-              ))
-            }
+          <PassSlider />
         </div>
       </IonContent>
     </IonPage>
