@@ -14,11 +14,12 @@ const Home: React.FC = () => {
       <IonContent fullscreen className=''>
 
         {/* content */}
-        <div className='h-1/5 overflow-hidden rounded-br-lg rounded-bl-lg shadow-lg relative '>
+        <div className='h-1/5 overflow-hidden rounded-br-lg rounded-bl-lg shadow-lg relative align-middle'>
           <img
             src="images/istockphoto-1161674685-612x612.jpg"
             className='w-full absolute -translate-y-6'
             alt="backgroundBus" />
+            <img src="icons/logo.svg" className="z-20 w-20 absolute top-[50%] translate-y-[-50%] ml-3" alt="" />
         </div>
         <div className="w-screen p-2 text-center ">
           <div className='w-full flex text-center justify-start mt-3 pl-7'>
