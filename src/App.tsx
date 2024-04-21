@@ -107,7 +107,7 @@ const App: React.FC = () => {
                 className="bg-blue"
                 onClick={() => getCurrentColor(idx)}
               >
-                <Icon name={page.icon} className={ `text-2xl text-orange ${color[idx]}`} />
+                <Icon name={page.icon} className={ `text-2xl ${color[idx]}`} />
               </IonTabButton>
             ))}
           </IonTabBar>
