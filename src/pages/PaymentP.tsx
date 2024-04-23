@@ -171,7 +171,7 @@ const PaymentP: React.FC = () => {
             </div>
           </div>
           <div
-            className={`w-full h-[75%] overflow-clip relative p-5 py-0`}
+            className={`w-full h-${selectedCard == -1 ? "[75%]" : "1/2"} overflow-clip relative p-5 py-0`}
           >
             {passCards.map((item, idx) => (
               <div
@@ -192,9 +192,21 @@ const PaymentP: React.FC = () => {
           </div>
           <div
             onClick={() => { document.getElementById("tab-button-/profile")?.click() }}
-            className={`w-full bg-blue text-white text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "": "hidden"}`}>
+            className={`w-full bg-blue text-white text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "" : "hidden"}`}>
             <Icon name="" className="" />
             Add Pass
+          </div>
+          <div
+            className={`w-full px-7 justify-center text-center ${selectedCard == -1 ? 'hidden' : ''}`} >
+            <div className="justify-center flex flex-col text-center">
+              <Icon name="br-angle-small-up" className="text-gray mx-auto" />
+              <div className="text-gray">
+                Click to Back
+              </div>
+            </div>
+            <img src="/images/qrcode.png" className="w-5/6 mx-auto" alt="" />
+            <div className="w-4/6 rounded-md h-0 border-[1px] mx-auto border-black mb-2" />
+            acf08a99-f0ef-4d22-a174
           </div>
         </div>
       </IonContent>
