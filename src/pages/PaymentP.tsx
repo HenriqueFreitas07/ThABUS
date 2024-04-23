@@ -12,6 +12,8 @@ import { useState } from "react";
 import Icon from "../components/Icon";
 import PassCard from "../components/PassCard";
 import PassSlider from "../components/PassSlider";
+import { Link } from "react-router-dom";
+
 const paymentMethods = [
   {
     name: "João Quintão",
@@ -33,7 +35,7 @@ const paymentMethods = [
   },
 ];
 
-const busPasses = [
+const passCards = [
   {
     zone: "Zone 1",
     valid: "02/12",
@@ -55,7 +57,8 @@ const busPasses = [
 const PaymentP: React.FC = () => {
   const [activeSegment, setActiveSegment] = useState(0); // 0 for 'Tickets', 1 for 'Pass'
   const [paymentMethod, setPaymentMethod] = useState(0); // 0 for 'Tickets', 1 for 'Pass'
-
+  const [activeIndex, setActiveIndex] = useState(passCards.length / 2);
+  const [selectedCard, setSelectedCard] = useState(-1);
   const handleSegmentChange = (v: number) => {
     setActiveSegment(v);
   };
@@ -63,6 +66,22 @@ const PaymentP: React.FC = () => {
   const handlePaymentMethod = (method: number) => {
     setPaymentMethod(method);
   };
+
+
+  const changeFocus = (index: number) => {
+    if (index == activeIndex) {
+      // open details of the card on the same page
+      if (selectedCard == index) {
+        setSelectedCard(-1)
+        return;
+      }
+      setSelectedCard(index)
+      return;
+    }
+    setActiveIndex(index)
+    setSelectedCard(-1)
+  }
+
   return (
     <IonPage className="">
       <IonContent fullscreen className="p-2">
@@ -114,9 +133,8 @@ const PaymentP: React.FC = () => {
                 onClick={() => {
                   handlePaymentMethod(idx);
                 }}
-                className={` bg-blue ${
-                  paymentMethod == idx ? "border-2 shandow-2xl" : ""
-                } rounded-md border-orange w-5/6 p-2 mx-auto my-2 columns-2  grid-flow-col flex`}
+                className={` bg-blue ${paymentMethod == idx ? "border-2 shandow-2xl" : ""
+                  } rounded-md border-orange w-5/6 p-2 mx-auto my-2 columns-2  grid-flow-col flex`}
               >
                 <div className="grid-rows-2 w-full h-full grid-flow-row inline-block text-white">
                   <div className="w-full my-auto mx-auto px-2 flex relative ">
@@ -141,9 +159,43 @@ const PaymentP: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className={`w-full h-screen relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
+        <div className={`w-full h-[38rem] relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
           {/* Pass */}
-          <PassSlider />
+          <div className={`w-full h-fit p-3 my-3 flex justify-center items-center ${selectedCard == -1 ? "" : "hidden"}`}>
+            <div className="text-2xl flex  mx-3 my-auto ">
+              <Icon
+                name="br-id-card-clip-alt"
+                className="text-orange text-2xl my-auto mx-3"
+              />
+              Select a Pass
+            </div>
+          </div>
+          <div
+            className={`w-full h-[75%] overflow-clip relative p-5 py-0`}
+          >
+            {passCards.map((item, idx) => (
+              <div
+                key={idx}
+                className={`w-11/12 origin-center overflow-hidden shadow-xl rounded-md border-3 border-white h-fit absolute text-white bg-blue ${selectedCard == -1 ? "top-[50%]" : "top-0"} transition-all`}
+                style={{
+                  scale: `${1 - (0.1 * Math.abs(idx - activeIndex))}`,
+                  zIndex: `${passCards.length - Math.abs(activeIndex - idx)}`,
+                  opacity: `${selectedCard == -1 ? 1 - (0.4 * Math.abs(activeIndex - idx)) : (selectedCard == idx ? 1 : 0)}`,
+                  transform: `${selectedCard == -1 ? `translateY(${((50 * ((idx - activeIndex)) - 50))}%)` : (selectedCard == idx ? 'translateY(0%)' : 0)}`,
+                  transformOrigin: "center",
+                }}
+                onClick={() => { changeFocus(idx) }}
+              >
+                <PassCard key={idx} zone={item.zone} valid={item.valid} />
+              </div>
+            ))}
+          </div>
+          <div
+            onClick={() => { document.getElementById("tab-button-/profile")?.click() }}
+            className={`w-full bg-blue text-white text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "": "hidden"}`}>
+            <Icon name="" className="" />
+            Add Pass
+          </div>
         </div>
       </IonContent>
     </IonPage>
