@@ -4,11 +4,11 @@ import { useGSAP } from "@gsap/react";
 type Props = {
   zone: string;
   valid: string;
-  key: number;
+  id: number;
   className?: string;
 };
 
-export default function PassCard({ key, zone, valid, className }: Props) {
+export default function PassCard({ id, zone, valid, className }: Props) {
   useGSAP(() => {
     // gsap code here...
     const starShine: any = gsap
@@ -37,34 +37,6 @@ export default function PassCard({ key, zone, valid, className }: Props) {
       .timeline()
       .set("svg", { opacity: 1 })
       .set(".scratches", { rotation: 70, x: 450, y: -10 })
-      .set("#tri2", { scale: 0.5 })
-      .from(
-        "#cardMask rect",
-        {
-          scale: 0,
-          rotation: 0,
-          duration: 1,
-          transformOrigin: "50% 50%",
-          ease: "expo.inOut",
-        },
-        0
-      )
-      .fromTo(
-        "#orb1",
-        { y: 160 },
-        { y: -20, ease: "circ", repeat: -1, yoyo: true, duration: 1 },
-        0.8
-      )
-      .from(
-        ".logoPt",
-        { x: (i) => [18, -10][i], duration: 1.2, ease: "expo.inOut" },
-        0.9
-      )
-      .from(
-        "svg text",
-        { x: -40, duration: 1.1, ease: "expo.inOut", stagger: 0.2 },
-        1
-      )
       .from(
         ".txtBox",
         {
@@ -105,7 +77,7 @@ export default function PassCard({ key, zone, valid, className }: Props) {
         viewBox="0 0 600 368"
       >
         <defs>
-          <mask id={`chipMask` + key}>
+          <mask id={`chipMask` + id}>
             <rect width="100%" height="100%" fill="#fff" />
             <path
               fill="none"
@@ -115,7 +87,7 @@ export default function PassCard({ key, zone, valid, className }: Props) {
             />
           </mask>
 
-          <mask id={"cardMask" + key}>
+          <mask id={"cardMask" + id}>
             <rect rx="20" ry="20" fill="#fff" width="600" height="368" />
           </mask>
 
@@ -177,13 +149,13 @@ export default function PassCard({ key, zone, valid, className }: Props) {
           </g>
         </g>
       </svg>
-      <div id="valid" className="absolute bottom-0 right-0 p-4 pr-6 text-white">
+      <div id="valid" className="absolute bottom-0 right-0 p-4 text-[1.6rem] pr-6 text-white">
         {valid}
       </div>
 
       <div
         id="Zone"
-        className="absolute top-0 left-0 p-4 pl-6 text-white text-2xl"
+        className="absolute top-0 left-0 p-4 pl-6 text-white text-[1.6rem]"
       >
         {zone}
       </div>

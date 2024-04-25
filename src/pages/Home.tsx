@@ -2,7 +2,6 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import Icon from '../components/Icon';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
-import RoutesListCard from '../components/RoutesListCard';
 
 const Home: React.FC = () => {
   const items = [

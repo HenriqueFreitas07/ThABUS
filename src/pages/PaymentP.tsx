@@ -37,19 +37,23 @@ const paymentMethods = [
 
 const passCards = [
   {
-    zone: "Zone 1",
+    id:1,
+    zone: "Linha 1",
     valid: "02/12",
   },
   {
-    zone: "Zone 2",
+    id:2,
+    zone: "Linha 2",
     valid: "02/12",
   },
   {
-    zone: "Zone 3",
+    id:3,
+    zone: "Linha 3",
     valid: "02/12",
   },
   {
-    zone: "Zone 4",
+    id:4,
+    zone: "Linha 4",
     valid: "02/24",
   },
 ];
@@ -159,7 +163,7 @@ const PaymentP: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className={`w-full h-[38rem] relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
+        <div className={`w-full h-${selectedCard == -1 ? "[38rem]" : "full"} relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
           {/* Pass */}
           <div className={`w-full h-fit p-3 my-3 flex justify-center items-center ${selectedCard == -1 ? "" : "hidden"}`}>
             <div className="text-2xl flex  mx-3 my-auto ">
@@ -171,7 +175,8 @@ const PaymentP: React.FC = () => {
             </div>
           </div>
           <div
-            className={`w-full h-${selectedCard == -1 ? "[75%]" : "1/2"} overflow-clip relative p-5 py-0`}
+            className={`w-full  overflow-clip relative p-5 py-0`}
+            style={{ height: `${selectedCard == -1 ? "75%" : "33%"}` }}
           >
             {passCards.map((item, idx) => (
               <div
@@ -186,7 +191,7 @@ const PaymentP: React.FC = () => {
                 }}
                 onClick={() => { changeFocus(idx) }}
               >
-                <PassCard key={idx} zone={item.zone} valid={item.valid} />
+                <PassCard id={idx} zone={item.zone} valid={item.valid} />
               </div>
             ))}
           </div>
@@ -207,6 +212,9 @@ const PaymentP: React.FC = () => {
             <img src="/images/qrcode.png" className="w-5/6 mx-auto" alt="" />
             <div className="w-4/6 rounded-md h-0 border-[1px] mx-auto border-black mb-2" />
             acf08a99-f0ef-4d22-a174
+          </div>
+          <div className={`h-full pb-24 text-center ${selectedCard == -1 ? 'hidden' : ''}`}>
+            <img className="m-3 mx-auto h-full " src={`images/MapaRede/L0${passCards[selectedCard]?.id}.png`} alt="" />
           </div>
         </div>
       </IonContent>
