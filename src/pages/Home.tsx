@@ -2,7 +2,6 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import Icon from '../components/Icon';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
-import RoutesListCard from '../components/RoutesListCard';
 
 const Home: React.FC = () => {
   const items = [
@@ -36,7 +35,7 @@ const Home: React.FC = () => {
               Last Routes
             </div>
           </div>
-          <div className='w-2/3 rounded-md h-0 border-[1px] mx-auto border-light-blue ' />
+          <div className='w-5/6 rounded-md h-0 border-[1px] mx-auto border-light-blue ' />
           {/* Card */}
           
           {/* <RoutesListCard origin='Aveiro,Forum ' destination='Aveiro' time='10:00h, Quarta-feira' id='QW-4720' /> */}
