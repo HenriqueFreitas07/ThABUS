@@ -1,7 +1,13 @@
 import { GoogleMap } from '@capacitor/google-maps';
 import { useRef } from 'react';
+import { GoogleMapConfig } from '@capacitor/google-maps/dist/typings/definitions';
 
-const MyMap: React.FC = () => {
+type MapConfig = {
+    config: GoogleMapConfig;
+    className?: string;
+}
+
+const MyMap = ({ config, className }: MapConfig) => {
     const mapRef = useRef<HTMLElement>();
     let newMap: GoogleMap;
 
@@ -11,27 +17,24 @@ const MyMap: React.FC = () => {
         newMap = await GoogleMap.create({
             id: 'my-cool-map',
             element: mapRef.current,
-            apiKey: process.env.VITE_GOOGLE_API_KEY as string,
-            config: {
-                center: {
-                    lat: 33.6,
-                    lng: -117.9
-                },
-                zoom: 8
-            }
+            apiKey: "AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ",
+            config
         })
     }
+    createMap();
 
     return (
-        <div className="component-wrapper">
-            <capacitor-google-map ref={mapRef} style={{
-                display: 'inline-block',
-                width: 275,
-                height: 400
-            }}></capacitor-google-map>
+        <>
+            <div></div>
+            <div className={`component-wrapper ${className}`}>
+                <capacitor-google-map ref={mapRef} style={{
+                    display: 'inline-block',
+                    width: '100vw',
+                    height: '100vh'
+                }}></capacitor-google-map>
 
-            <button onClick={createMap}>Create Map</button>
-        </div>
+            </div>
+        </>
     )
 }
 
