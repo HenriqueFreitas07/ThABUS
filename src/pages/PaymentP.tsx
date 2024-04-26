@@ -163,7 +163,7 @@ const PaymentP: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className={`w-full h-${selectedCard == -1 ? "[38rem]" : "full"} relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
+        <div className={`w-full h-full relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
           {/* Pass */}
           <div className={`w-full h-fit p-3 my-3 flex justify-center items-center ${selectedCard == -1 ? "" : "hidden"}`}>
             <div className="text-2xl flex  mx-3 my-auto ">
