@@ -1,13 +1,14 @@
 import { GoogleMap } from '@capacitor/google-maps';
 import { useRef } from 'react';
-import { GoogleMapConfig } from '@capacitor/google-maps/dist/typings/definitions';
+import { GoogleMapConfig, Marker, LatLng } from '@capacitor/google-maps/dist/typings/definitions';
 
 type MapConfig = {
     config: GoogleMapConfig;
+    markers?: Marker[];
     className?: string;
 }
 
-const MyMap = ({ config, className }: MapConfig) => {
+const MyMap = ({ config, className, markers }: MapConfig) => {
     const mapRef = useRef<HTMLElement>();
     let newMap: GoogleMap;
 
@@ -21,7 +22,13 @@ const MyMap = ({ config, className }: MapConfig) => {
             config
         })
     }
-    createMap();
+    createMap().then(() => {
+        if (markers) {
+            markers.forEach(marker => {
+                newMap.addMarker(marker);
+            });
+        }
+    });
 
     return (
         <>
