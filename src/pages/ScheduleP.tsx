@@ -12,23 +12,9 @@ import Icon from '../components/Icon';
 const ScheduleP: React.FC = () => {
   return (
     <IonPage>
-      <IonContent fullscreen>
-        <div className='card'>
-          <div  >
-            <IonInput type="search" label="Origin: " class="custom"></IonInput>
-          </div>
-          <div>
-            <IonInput type="search" label="Destination: " class="custom"> </IonInput>
-          </div>
-          <div className='container flex justify-between'>
-          <div className='flex buttonLeft '>
-            <button className=" flex flex-row content-center"><Icon name="br-square-plus" className='inline-block mr-2 mt-0.5'></Icon>Filters</button>
-          </div>  
-            <button className="buttonRight self-center" ><Icon name="br-search-location" className='aspect-square inline-block mt-1'></Icon></button>
-          </div>
-        </div>
-      </IonContent>
-
+      <IonHeader className='bg-blue-950 bg-fixed'>
+        <IonTitle><Icon name="br-angle-left" className='aspect-square inline-block mt-1 fill-orange-950 '></Icon></IonTitle>
+      </IonHeader>
 
     </IonPage>
   );
