@@ -2,13 +2,15 @@ import {
   IonContent,
   IonHeader,
   IonInput,
+  IonLoading,
   IonPage,
   IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import GoogleMap from "../components/GoogleMap";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { Geolocation } from "@capacitor/geolocation";
 
 const configMap = {
   mapType: "MAP_TYPE_TERRAIN",
@@ -74,40 +76,29 @@ function addDistToLatLng(
 }
 
 const RealTime = () => {
-  // var markers: Marker[] = [];
-  // const [location, setLocation] = useState(false);
-  // const getLocation = async () => {
-  //   const coordinates = await Geolocation.getCurrentPosition();
-  //   configMap.center = {
-  //     lat: coordinates.coords.latitude,
-  //     lng: coordinates.coords.longitude,
-  //   };
-  //   markers.push(
-  //     {
-  //       coordinate: {
-  //         lat: coordinates.coords.latitude,
-  //         lng: coordinates.coords.longitude,
-  //       },
-  //       title: 'My Location',
-  //       iconUrl: 'images/marker.png',
-  //       iconSize: { width: 30, height: 30 },
-  //     }
-  //   )
-  //   setLocation(true);
-  //   //markers for the busses
-  //   for (let i = 1; i < 10; i++) {
-  //     let m =
-  //     {
-  //       coordinate: addDistToLatLng(coordinates.coords.latitude, coordinates.coords.longitude, 0.25 * i, (Math.random()*360 )* i),
-  //       title: 'Bus ' + i,
-  //       iconUrl: 'images/bus.png',
-  //       iconSize: { width: 30, height: 30 },
-  //     }
-  //     markers.push(m);
-  //   }
-  //   console.log(markers);
-  // }
-  // getLocation();
+  const [coordinates, setCoordinates] = useState<{
+    lat: number;
+    lng: number;
+  }>();
+  const openLoading = () => {
+    const loading = document.getElementById("open-loading");
+    loading?.click();
+  };
+  openLoading();
+
+  useEffect(() => {
+    const getGeolocation = async () => {
+      try {
+        const position = await Geolocation.getCurrentPosition();
+        const { latitude, longitude } = position.coords;
+        setCoordinates({ lat: latitude, lng: longitude });
+      } catch (error) {
+        alert("Could get the location, please enable location services.");
+      }
+    };
+
+    getGeolocation();
+  }, []);
 
   return (
     <IonPage>
@@ -121,7 +112,21 @@ const RealTime = () => {
               </div>
             </IonInput>
           </div>
-          <GoogleMap />
+          {/* make it render after promised return a value for location  */}
+          {coordinates ? (
+            <GoogleMap geolocation={coordinates} />
+          ) : (
+            <>
+              <button id="open-loading" className="hidden"></button>
+              <IonLoading
+                trigger={"open-loading"}
+                message="Getting your location..."
+                duration={5000}
+                spinner={"circles"}
+                showBackdrop={false}
+              />
+            </>
+          )}
         </div>
       </IonContent>
     </IonPage>
