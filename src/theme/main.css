@@ -69,6 +69,26 @@ ion-input.custom {
 }
 
 
+.header {
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  float: center;
+  height: min-content;
+  width: 95%;
+  max-height: fit-content;
+  align-items: center;
+  color: white;
+  background-color: #130553;
+  position: relative;
+
+  
+
+}
+
 
 
 .card {

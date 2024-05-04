@@ -68,7 +68,7 @@ const App: React.FC = () => (
           <Redirect to="/home" />
          </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" className='py-2 bg-blue'>
+        <IonTabBar slot="bottom" className='py-2 bg-blue '>
           {
             pages.map((page,idx) => (
               <IonTabButton key={idx} tab={page.path} href={page.path} className='bg-blue'>

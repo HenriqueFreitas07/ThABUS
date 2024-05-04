@@ -9,7 +9,7 @@ import Icon from '../components/Icon';
 
 
 
-const ScheduleP: React.FC = () => {
+const ScheduleList: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -34,4 +34,4 @@ const ScheduleP: React.FC = () => {
   );
 };
 
-export default ScheduleP;
+export default ScheduleList;
