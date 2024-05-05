@@ -10,10 +10,6 @@ export default function PassSlider() {
     { zone: "Zone 2", valid: "02/12" },
     { zone: "Zone 3", valid: "02/12" },
     { zone: "Zone 4", valid: "02/24" },
-    { zone: "Zone 4", valid: "02/24" },
-    { zone: "Zone 4", valid: "02/24" },
-    { zone: "Zone 4", valid: "02/24" },
-    { zone: "Zone 4", valid: "02/24" },
   ];
 
   const handleClick = (index: number) => {
@@ -33,7 +29,7 @@ export default function PassSlider() {
           }}
           onClick={() => handleClick(index)}
         >
-          <PassCard key={index} zone={pass.zone} valid={pass.valid} />
+          <PassCard id={index} zone={pass.zone} valid={pass.valid} />
         </div>
       ))}
     </div>
