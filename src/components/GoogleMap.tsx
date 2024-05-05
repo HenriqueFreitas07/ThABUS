@@ -10,50 +10,184 @@ import { useState } from "react";
 
 type GoogleMapProps = {
   // Define props for the component here
-  geolocation: { lat: number; lng: number };
-  markers?:AdvancedMarkerProps[]
+  geolocation?: { lat: number; lng: number };
 };
+const busStops = [
+  {
+    name: "Aveiro Hospital Bus Stop",
+    pinBg: "#333A76",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4723",
+    position: { lat: 40.635, lng: -8.659 },
+  },
+  {
+    name: "Aveiro Train Station Bus Stop",
+    pinBg: "#333A74",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4721",
+    position: { lat: 40.64427, lng: -8.64554 },
+  },
+  {
+    name: "Aveiro University Bus Stop",
+    pinBg: "#333A75",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4722",
+    position: { lat: 40.629087, lng: -8.65787 },
+  },
+  {
+    name: "Casa das Framboesas",
+    pinBg: "#333A78",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4725",
+    position: { lat: 40.6441, lng: -8.6505 },
+  },
+  {
+    name: "Fonte de Esgueira",
+    pinBg: "#333A82",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4729",
+    position: { lat: 40.6385, lng: -8.6342 },
+  },
+  {
+    name: "Igreja de Esgueira",
+    pinBg: "#333A81",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4728",
+    position: { lat: 40.6399, lng: -8.6364 },
+  },
+  {
+    name: "Gen. Costa Cascais",
+    pinBg: "#333A80",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4727",
+    position: { lat: 40.6445, lng: -8.6533 },
+  },
+  {
+    name: "Aveiro Old Prison Bus Stop",
+    pinBg: "#333A77",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4724",
+    position: { lat: 40.6415, lng: -8.65358 },
+  },
+  {
+    name: "Aveiro Forum Bus Stop",
+    pinBg: "#333A73",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4720",
+    position: { lat: 40.64071895550601, lng: -8.652758379697358 },
+  },
+  {
+    name: "Tanques de Esgueira",
+    pinBg: "#333A79",
+    glyphColor: "#FFFFFF",
+    boderColor: "#FFFFFF",
+    code: "QW-4726",
+    position: { lat: 40.6387, lng: -8.6341 },
+  },
+];
 
 export default function GoogleMap({ geolocation }: GoogleMapProps) {
   const [newCenter, setMapCenter] = useState<{ lat: number; lng: number }>({
-    lat: 0,
-    lng: 0,
+    lat: 40.63069610757116,
+    lng: -8.657316587947273,
   });
 
-  // Define event handlers
-  const handleMapDoubleClick = (event: any) => {
-    // Get the new center from the double-clicked location
-    const newCenter = {
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng(),
+  const markers: AdvancedMarkerProps[] = [];
+
+  
+  for (let i = 0; i < 4; i++) {
+    const { lat, lng } = addDistToLatLng(
+      newCenter.lat,
+      newCenter.lng,
+      0.8 + Math.random() * 0.3,
+      (i * 45) * (Math.random()*360)  
+    );
+    const marker: AdvancedMarkerProps = {
+      position: { lat, lng },
+      title: `${i + 1} Bacano`,
     };
-    // Update the state to set the new center
-    setMapCenter(newCenter);
-  };
+
+    markers.push(marker);
+  }
 
   return (
     <>
       <APIProvider apiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ">
         <Map
-          zoom={13}
           mapId={"fcdc1a0f0ad84c5e"}
-          defaultCenter={geolocation}
+          defaultCenter={!geolocation ? newCenter : geolocation}
           disableDefaultUI={true}
-          initialViewState={{
-            latitude: 37.7749295,
-            longitude: -122.4194155,
-            zoom: 10,
-          }}
-          onDblclick={handleMapDoubleClick}
+          gestureHandling={"greedy"}
+          defaultZoom={13}
         >
-          <AdvancedMarker position={{ lat: 37.7749295, lng: -122.4194155 }}>
+          <AdvancedMarker
+            position={!geolocation ? newCenter : geolocation}
+            onClick={() => console.log("Marker clicked")}
+          >
             <Pin />
             <InfoWindow>
               <div>San Francisco</div>
             </InfoWindow>
           </AdvancedMarker>
+          {markers?.map((marker, index) => (
+            <AdvancedMarker
+              key={index}
+              position={marker.position}
+            >
+ 
+              <Pin background={"#FBA834"}/>
+            </AdvancedMarker>
+          ))}
+          {busStops?.map((marker, index) => (
+            <AdvancedMarker
+              key={index}
+              position={marker.position}
+              onClick={() => console.log(marker.code)}
+            >
+              <h1>{marker.name}</h1>
+              <Pin
+                background={marker.pinBg}
+                glyphColor={marker.glyphColor}
+                borderColor={marker.boderColor}
+              />
+            </AdvancedMarker>
+          ))}
         </Map>
       </APIProvider>
     </>
   );
+}
+
+function addDistToLatLng(
+  lat: number,
+  lng: number,
+  distance: number,
+  angle: number
+) {
+  var R = 6371; // Radius of the Earth in km
+  var brng = (angle * Math.PI) / 180; // Convert bearing to radian
+  var lat1 = (lat * Math.PI) / 180; // Current coords to radians
+  var lon1 = (lng * Math.PI) / 180;
+  var lat2 = Math.asin(
+    Math.sin(lat1) * Math.cos(distance / R) +
+      Math.cos(lat1) * Math.sin(distance / R) * Math.cos(brng)
+  );
+  var lon2 =
+    lon1 +
+    Math.atan2(
+      Math.sin(brng) * Math.sin(distance / R) * Math.cos(lat1),
+      Math.cos(distance / R) - Math.sin(lat1) * Math.sin(lat2)
+    );
+  lat2 = (lat2 * 180) / Math.PI; // Convert back in degrees
+  lon2 = (lon2 * 180) / Math.PI;
+  return { lat: lat2, lng: lon2 };
 }

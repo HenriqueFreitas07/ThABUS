@@ -11,6 +11,10 @@ import {
 import GoogleMap from "../components/GoogleMap";
 import { Suspense, useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
+import { AdvancedMarkerProps } from "@vis.gl/react-google-maps";
+import myMarker from "icons/myLocation.png";
+import Button from "../components/Button";
+import Icon from "../components/Icon";
 
 const configMap = {
   mapType: "MAP_TYPE_TERRAIN",
@@ -50,36 +54,12 @@ const configMap = {
   ],
 };
 
-function addDistToLatLng(
-  lat: number,
-  lng: number,
-  distance: number,
-  angle: number
-) {
-  var R = 6371; // Radius of the Earth in km
-  var brng = (angle * Math.PI) / 180; // Convert bearing to radian
-  var lat1 = (lat * Math.PI) / 180; // Current coords to radians
-  var lon1 = (lng * Math.PI) / 180;
-  var lat2 = Math.asin(
-    Math.sin(lat1) * Math.cos(distance / R) +
-      Math.cos(lat1) * Math.sin(distance / R) * Math.cos(brng)
-  );
-  var lon2 =
-    lon1 +
-    Math.atan2(
-      Math.sin(brng) * Math.sin(distance / R) * Math.cos(lat1),
-      Math.cos(distance / R) - Math.sin(lat1) * Math.sin(lat2)
-    );
-  lat2 = (lat2 * 180) / Math.PI; // Convert back in degrees
-  lon2 = (lon2 * 180) / Math.PI;
-  return { lat: lat2, lng: lon2 };
-}
-
 const RealTime = () => {
   const [coordinates, setCoordinates] = useState<{
     lat: number;
     lng: number;
   }>();
+  let selected = false;
   const openLoading = () => {
     const loading = document.getElementById("open-loading");
     loading?.click();
@@ -87,17 +67,19 @@ const RealTime = () => {
   openLoading();
 
   useEffect(() => {
-    const getGeolocation = async () => {
-      try {
-        const position = await Geolocation.getCurrentPosition();
-        const { latitude, longitude } = position.coords;
-        setCoordinates({ lat: latitude, lng: longitude });
-      } catch (error) {
-        alert("Could get the location, please enable location services.");
-      }
-    };
-
-    getGeolocation();
+    if (!coordinates && !selected) {
+      const getGeolocation = async () => {
+        try {
+          const position = await Geolocation.getCurrentPosition();
+          const { latitude, longitude } = position.coords;
+          setCoordinates({ lat: latitude, lng: longitude });
+        } catch (error) {
+          alert("Could get the location, please enable location services.");
+        }
+        selected = true;
+      };
+      getGeolocation();
+    }
   }, []);
 
   return (
@@ -105,26 +87,33 @@ const RealTime = () => {
       <IonContent fullscreen>
         {/* content */}
         <div className="w-full h-full overflow-y-clip relative">
-          <div className=" z-10 w-5/6 p-4 pt-0 mt-4 bg-blue absolute top-0 left-[50%] translate-x-[-50%]   border-2 rounded-md border-orange">
-            <IonInput className="text-white " labelPlacement="floating">
+          <div className=" z-10 w-5/6 p-4 pt-0 mt-4 bg-blue absolute top-0 left-[50%] translate-x-[-50%]   border-2 rounded-md border-orange flex ">
+            <IonInput className="text-white mt-2 " labelPlacement="floating">
               <div slot="label" className="text-white">
-                Bus Code
+                Search Bus Code...
               </div>
             </IonInput>
+            <button onClick={() => {console.log("cliquei")}} className="w-fill border-none h-full mt-6">
+              <Icon
+                name="br-search-location"
+                className="text-orange border-none my-auto mx-1 w-1/5"
+              />
+            </button>
           </div>
+          <button id="open-loading" className="hidden"></button>
+          <IonLoading
+            trigger={"open-loading"}
+            message="Loading map..."
+            duration={1000}
+            spinner={"circles"}
+            showBackdrop={false}
+          />
           {/* make it render after promised return a value for location  */}
           {coordinates ? (
             <GoogleMap geolocation={coordinates} />
           ) : (
             <>
-              <button id="open-loading" className="hidden"></button>
-              <IonLoading
-                trigger={"open-loading"}
-                message="Getting your location..."
-                duration={5000}
-                spinner={"circles"}
-                showBackdrop={false}
-              />
+              <GoogleMap />
             </>
           )}
         </div>
