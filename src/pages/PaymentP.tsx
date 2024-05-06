@@ -37,22 +37,22 @@ const paymentMethods = [
 
 const passCards = [
   {
-    id:1,
+    id: 1,
     zone: "Linha 1",
     valid: "02/12",
   },
   {
-    id:2,
+    id: 2,
     zone: "Linha 2",
     valid: "02/12",
   },
   {
-    id:3,
+    id: 3,
     zone: "Linha 3",
     valid: "02/12",
   },
   {
-    id:4,
+    id: 4,
     zone: "Linha 4",
     valid: "02/24",
   },
@@ -161,6 +161,13 @@ const PaymentP: React.FC = () => {
                 </div>
               </div>
             ))}
+            <div
+              onClick={() => { console.log("cliquei") }}
+              className={` bg-light-blue-200 border-blue border-2 rounded-md w-4/5 h-full text-center text-blue my-2 p-2 mx-auto`}
+            >
+              <Icon name="br-plus" className="mx-auto p-1" />
+            </div>
+
           </div>
         </div>
         <div className={`w-full h-full relative ${activeSegment == 0 ? "hidden" : ""} p-5`}>
@@ -174,6 +181,12 @@ const PaymentP: React.FC = () => {
               Select a Pass
             </div>
           </div>
+          <div
+            onClick={() => { document.getElementById("tab-button-/profile")?.click() }}
+            className={`w-full bg-transparent text-blue border-blue border-2 text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "" : "hidden"}`}>
+            <Icon name="br-plus" className="mx-auto" />
+          </div>
+          {/* Passes */}
           <div
             className={`w-full  overflow-clip relative p-5 py-0`}
             style={{ height: `${selectedCard == -1 ? "75%" : "33%"}` }}
@@ -195,12 +208,8 @@ const PaymentP: React.FC = () => {
               </div>
             ))}
           </div>
-          <div
-            onClick={() => { document.getElementById("tab-button-/profile")?.click() }}
-            className={`w-full bg-blue text-white text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "" : "hidden"}`}>
-            <Icon name="" className="" />
-            Add Pass
-          </div>
+
+
           <div
             className={`w-full px-7 justify-center text-center ${selectedCard == -1 ? 'hidden' : ''}`} >
             <div className="justify-center flex flex-col text-center">
