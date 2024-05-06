@@ -59,12 +59,19 @@ const RealTime = () => {
     lat: number;
     lng: number;
   }>();
+  let busCode: string | null | undefined = null;
+  const [search, setSearch] = useState<string | null>();
   let selected = false;
-  const openLoading = () => {
-    const loading = document.getElementById("open-loading");
-    loading?.click();
-  };
-  openLoading();
+
+  // const openLoading = () => {
+  //   const loading = document.getElementById("open-loading");
+  //   loading?.click();
+  // };
+  // openLoading();
+
+  const changeBusCode = () => {
+    setSearch(busCode);
+  }
 
   useEffect(() => {
     if (!coordinates && !selected) {
@@ -80,7 +87,8 @@ const RealTime = () => {
       };
       getGeolocation();
     }
-  }, []);
+    busCode = search;
+  }, [search]);
 
   return (
     <IonPage>
@@ -88,34 +96,29 @@ const RealTime = () => {
         {/* content */}
         <div className="w-full h-full overflow-y-clip relative">
           <div className=" z-10 w-5/6 p-4 pt-0 mt-4 bg-blue absolute top-0 left-[50%] translate-x-[-50%]   border-2 rounded-md border-orange flex ">
-            <IonInput className="text-white mt-2 " labelPlacement="floating">
+            <IonInput onIonChange={(event: any) => { busCode = event.detail.value; }} className="text-white mt-2 " color="warning" labelPlacement="floating">
               <div slot="label" className="text-white">
                 Search Bus Code...
               </div>
             </IonInput>
-            <button onClick={() => {console.log("cliquei")}} className="w-fill border-none h-full mt-6">
+            <button onClick={changeBusCode} className="w-fill border-none h-full mt-6 focus:border-none ">
               <Icon
                 name="br-search-location"
-                className="text-orange border-none my-auto mx-1 w-1/5"
+                className="text-orange border-none my-auto mx-1 w-1/5 text-2xl"
               />
             </button>
           </div>
           <button id="open-loading" className="hidden"></button>
-          <IonLoading
+          {/* <IonLoading
             trigger={"open-loading"}
             message="Loading map..."
             duration={1000}
             spinner={"circles"}
             showBackdrop={false}
-          />
+          /> */}
           {/* make it render after promised return a value for location  */}
-          {coordinates ? (
-            <GoogleMap geolocation={coordinates} />
-          ) : (
-            <>
-              <GoogleMap />
-            </>
-          )}
+          <GoogleMap geolocation={coordinates} search={search} />
+
         </div>
       </IonContent>
     </IonPage>
