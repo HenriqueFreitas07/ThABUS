@@ -1,31 +1,27 @@
-import { IonContent, IonPage } from '@ionic/react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { IonContent, IonPage } from "@ionic/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, EffectCards } from "swiper/modules";
 
-import 'swiper/css';
-import '@ionic/react/css/ionic-swiper.css';
-
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-cards";
 // Optional parameters to pass to the swiper instance.
 // See https://swiperjs.com/swiper-api for valid options.
-const slideOpts = {
-    initialSlide: 1,
-    speed: 400,
-};
+
 type CarouselProps = {
-    items: JSX.Element[];
-}
+  items: JSX.Element[];
+};
 
 export default function Carousel({ items }: CarouselProps) {
-    return (
-        <Swiper
-            autoplay={true}
-            keyboard={true}
-            pagination={true}
-            scrollbar={true}
-            zoom={true}
-        >
-            {items.map((item, index) => (
-                <SwiperSlide key={index}>{item}</SwiperSlide>
-            ))}
-        </Swiper>
-    )
+  return (
+    <Swiper
+    effect={'cards'}
+    grabCursor={true}
+    modules={[EffectCards]}
+    >
+      {items.map((item, index) => {
+        return <SwiperSlide key={index}>{item}</SwiperSlide>;
+      })}
+    </Swiper>
+  );
 }

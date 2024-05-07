@@ -152,6 +152,9 @@ export default function PassCard({ id, zone, valid, className }: Props) {
       <div id="valid" className="absolute bottom-0 right-0 p-4 text-[1.6rem] pr-6 text-white">
         {valid}
       </div>
+      <div id="valid" className="absolute bottom-0 right-0 p-4 text-[1.6rem] pr-6 text-white">
+        {valid}
+      </div>
 
       <div
         id="Zone"
