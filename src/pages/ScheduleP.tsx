@@ -12,7 +12,6 @@ import { Redirect } from 'react-router-dom';
 
 
 
-
 const ScheduleP: React.FC = () => {
 
 
