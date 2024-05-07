@@ -14,7 +14,7 @@ import { ellipse, square, triangle } from 'ionicons/icons';
 import Home from './pages/Home';
 import Schedule from './pages/ScheduleP';
 import Payment from './pages/PaymentP';
-
+import ScheduleLists from './pages/ScheduleLists';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -46,6 +46,16 @@ const pages =
     { name:"Payment Page",path: '/payment', component: Payment, icon:"br-wallet" },
     { name:"RealTime",path: '/realtime', component: RealTime, icon:"br-land-location" },
     { name:"Profile",path: '/profile', component: Payment, icon:"br-admin-alt" },
+
+  ];
+  const pages1 = 
+  [
+    { name:"Home",path: '/home', component: Home, icon: "br-home" },
+    { name:"Schedule Page",path: '/schedule', component: Schedule, icon:"br-car-journey" },
+    { name:"Payment Page",path: '/payment', component: Payment, icon:"br-wallet" },
+    { name:"RealTime",path: '/realtime', component: RealTime, icon:"br-land-location" },
+    { name:"Profile",path: '/profile', component: Payment, icon:"br-admin-alt" },
+    { name:"ScheduleLists",path: '/ScheduleLists', component: ScheduleLists, icon:"" },
   ];
 
 
@@ -58,7 +68,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           {
-            pages.map((page, index) => (
+            pages1.map((page, index) => (
               <Route key={index} path={page.path} exact >
                 <page.component />
               </Route>

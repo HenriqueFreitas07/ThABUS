@@ -27,6 +27,16 @@ ion-input.custom {
 }
 
 
+ion-datetime-button::part(native) {
+  color: #FBA834;
+  border-radius: 10px;
+  border: 3px solid #FBA834;
+  margin:7px;
+  margin-left: 1px;
+  background: rgba(2, 12, 65, 0.6);
+}
+
+
  .container {
   display: flex;
  }
@@ -100,7 +110,7 @@ ion-input.custom {
   margin: 10px;
   top: 05%;;
   width: 95%;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
 
   
 }
