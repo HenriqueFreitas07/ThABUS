@@ -64,7 +64,7 @@ const ScheduleList: React.FC = () => {
       </IonCard>
   
     
-      <LoadScript googleMapsApiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ" >
+      <LoadScript googleMapsApiKey="" >
           <GoogleMap 
             mapContainerStyle={mapContainerStyle}
             zoom={14}

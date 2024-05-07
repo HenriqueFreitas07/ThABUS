@@ -45,7 +45,7 @@ const ScheduleP: React.FC = () => {
     <IonPage>
       <IonContent fullscreen>
         
-        <LoadScript googleMapsApiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ">
+        <LoadScript googleMapsApiKey="">
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={14}
