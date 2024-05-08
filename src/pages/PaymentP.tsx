@@ -10,9 +10,11 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import Icon from "../components/Icon";
-import PassCard from "../components/PassCard";
-import PassSlider from "../components/PassSlider";
+import PassCard from "../components/PassCardIn";
+import PassSlider from "../components/PassSlideIn";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 const paymentMethods = [
   {
@@ -66,7 +68,7 @@ const PaymentP: React.FC = () => {
   const handleSegmentChange = (v: number) => {
     setActiveSegment(v);
   };
-
+  const history = useHistory();
   const handlePaymentMethod = (method: number) => {
     setPaymentMethod(method);
   };
@@ -162,7 +164,7 @@ const PaymentP: React.FC = () => {
               </div>
             ))}
             <div
-              onClick={() => { console.log("cliquei") }}
+               onClick={(e )=>{e.preventDefault(); history.push("/PaymentCards")}}
               className={` bg-light-blue-200 border-blue border-2 rounded-md w-4/5 h-full text-center text-blue my-2 p-2 mx-auto`}
             >
               <Icon name="br-plus" className="mx-auto p-1" />
@@ -182,7 +184,7 @@ const PaymentP: React.FC = () => {
             </div>
           </div>
           <div
-            onClick={() => { document.getElementById("tab-button-/profile")?.click() }}
+             onClick={(x )=>{x.preventDefault(); history.push("/BuyPass")}}
             className={`w-full bg-transparent text-blue border-blue border-2 text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "" : "hidden"}`}>
             <Icon name="br-plus" className="mx-auto" />
           </div>
