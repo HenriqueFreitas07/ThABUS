@@ -62,6 +62,7 @@ const buttons = [
   { name: "Profile", path: '/profile', component: Profile, icon: "br-admin-alt" },
 ]
 
+setupIonicReact();
 const App: React.FC = () => {
   // let currentColor;
   // let color = ["text-light-blue", "text-orange", "text-orange", "text-orange", "text-orange"];
