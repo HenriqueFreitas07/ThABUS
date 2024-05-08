@@ -40,6 +40,8 @@ import Payment from "./pages/PaymentP";
 import RealTime from "./pages/Realtime";
 import Profile from "./pages/Profile";
 import ScheduleLists from "./pages/ScheduleLists";
+import PaymentCards from "./pages/PaymentCards";
+import BuyPass from './pages/BuyPass'
 import { useState } from "react";
 
 const pages = [
@@ -77,6 +79,8 @@ const pages1 =
     { name:"RealTime",path: '/realtime', component: RealTime, icon:"br-land-location" },
     { name:"Profile",path: '/profile', component: Profile, icon:"br-admin-alt" },
     { name:"ScheduleLists",path: '/ScheduleLists', component: ScheduleLists, icon:"" },
+    { name:"BuyPass",path: '/BuyPass', component: BuyPass, icon:"" },
+    { name:"PaymentCards",path: '/PaymentCards', component: PaymentCards, icon:"" },
   ];
 
 setupIonicReact();
