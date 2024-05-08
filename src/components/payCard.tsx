@@ -1,5 +1,5 @@
 import React, { JSXElementConstructor, useState } from 'react';
-import { IonContent, IonPage } from '@ionic/react';
+import { IonContent, IonPage, IonRippleEffect } from '@ionic/react';
 import '../theme/main.css';
 import Navbar from './Nav';
 import payOptOne from '/icons/optone.svg';
@@ -8,6 +8,9 @@ import Carousel from './Carousel';
 import CreditCard from './CreditCard';
 import Alert from './Alert';
 import Input from './Input';
+import Button from './Button';
+import Icon from './Icon';
+import { useHistory } from 'react-router-dom';
 
 interface CardsInfoProps {
   paymentoptions: string;
@@ -64,6 +67,8 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
     cvv: "",
     expiry: ""
   });
+
+  let history = useHistory();
   const handleButtonClick = (buttonId: string) => {
     setActiveButton(buttonId);
   };
@@ -112,6 +117,7 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
   let creditArray: any = [];
 
   const initialCreditCard = () => {
+    creditArray.push(CreditCard(creditCard))
     creditCards.map((card, index) => (
       creditArray.push(CreditCard({
         name: card.name,
@@ -120,8 +126,6 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
         expiry: card.expiryDate
       })))
     );
-    creditArray.push(CreditCard(creditCard))
-
   }
 
   initialCreditCard()
@@ -166,15 +170,15 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
               <img src={payOptTwo} alt="Option Two" style={{ width: '50px', margin: 'auto' }} />
             </button>
           </div>
-          <div className="info flex mb-2 ml-5 pt-5" style={{ width: '100%', flexDirection: 'column' }}>
+          <div className="info flex mb-2 pt-5" style={{ width: '100%', flexDirection: 'column' }}>
             {activeButton === 'button1' && (
-              <div style={{ width: '100%' }}>
+              <div className="" >
                 {/* Credit Card Forms */}
                 <Carousel items={creditArray} />
                 <div className="w-full p-3">
-                  <div className="flex">
+                  <div className=" w-full flex">
 
-                    <div className="w-2/4 ml-2">
+                    <div className="w-3/4 ml-2">
                       <Input
                         type="text"
                         fill="outline"
@@ -215,7 +219,7 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
                       >
                       </Input>
                     </div>
-                    <div className="w-1/4 ">
+                    <div className="w-2/5 ml-2 ">
                       <Input
                         color="warning"
                         type="text"
@@ -228,6 +232,16 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
                       >
                       </Input>
                     </div>
+                  </div>
+                </div>
+                <div className="p-3">
+                  <div className={`ripple-parent rounded-rectangle bg-blue text-center text-white`}
+                    onClick={() => { alert('Payment Successful'); history.push('/payment') }}
+                  >
+                    <b>
+                      Adicionar
+                    </b>
+                    <IonRippleEffect></IonRippleEffect>
                   </div>
                 </div>
 
