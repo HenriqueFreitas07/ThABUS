@@ -46,16 +46,21 @@ import { useEffect, useState } from "react";
 
 const pages =
   [
-    { name:"Home",path: '/home', component: Home, icon: "br-home" },
-    { name:"Schedule Page",path: '/schedule', component: Schedule, icon:"br-car-journey" },
-    { name:"Payment Page",path: '/payment', component: Payment, icon:"br-wallet" },
-    { name:"RealTime",path: '/realtime', component: RealTime, icon:"br-land-location" },
-    { name:"Profile",path: '/profile', component: Profile, icon:"br-admin-alt" },
-    { name:"BuyPass",path: '/BuyPass', component: BuyPass, icon:"" },
-    { name:"PaymentCards",path: '/PaymentCards', component: PaymentCards, icon:"" },
+    { name: "Home", path: '/home', component: Home, icon: "br-home" },
+    { name: "Schedule Page", path: '/schedule', component: Schedule, icon: "br-car-journey" },
+    { name: "Payment Page", path: '/payment', component: Payment, icon: "br-wallet" },
+    { name: "RealTime", path: '/realtime', component: RealTime, icon: "br-land-location" },
+    { name: "Profile", path: '/profile', component: Profile, icon: "br-admin-alt" },
+    { name: "BuyPass", path: '/BuyPass', component: BuyPass, icon: "" },
+    { name: "PaymentCards", path: '/PaymentCards', component: PaymentCards, icon: "" },
   ];
-
-setupIonicReact();
+const buttons = [
+  { name: "Home", path: '/home', component: Home, icon: "br-home" },
+  { name: "Schedule Page", path: '/schedule', component: Schedule, icon: "br-car-journey" },
+  { name: "Payment Page", path: '/payment', component: Payment, icon: "br-wallet" },
+  { name: "RealTime", path: '/realtime', component: RealTime, icon: "br-land-location" },
+  { name: "Profile", path: '/profile', component: Profile, icon: "br-admin-alt" },
+]
 
 const App: React.FC = () => {
   // let currentColor;
@@ -97,7 +102,7 @@ const App: React.FC = () => {
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom" className={`py-2 bg-blue `} id="tabs">
-            {pages.map((page, idx) => (
+            {buttons.map((page, idx) => (
               <IonTabButton
                 key={idx}
                 tab={page.path}

@@ -17,11 +17,11 @@ interface ProfileInfoProps {
   edit: string;
 }
 
-const ProfileInfo: React.FC<ProfileInfoProps> = ({ 
+const ProfileInfo: React.FC<ProfileInfoProps> = ({
   profilePic,
-  userName, 
-  subtitle, 
-  detailsText, 
+  userName,
+  subtitle,
+  detailsText,
   emailAddress,
   phoneNumber,
   busPass,
@@ -33,20 +33,18 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
   const history = useHistory();
 
   const BuyingPass = () => {
-    console.log("Click");
     history.push("/buypass");
   };
 
   const PaymentCards = () => {
-    console.log("Click2");
     history.push("/paymentcards");
   };
 
   return (
     <div className='profile-content'>
-      <Navbar/>
+      <Navbar />
       <div className="profile-image mt-5 block mx-auto">
-        <img src={profilePic} alt="foto de perfil"/>
+        <img src={profilePic} alt="foto de perfil" />
       </div>
       <div className="profile-name">
         {userName}
@@ -62,7 +60,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         <img src={edit} alt="" className='w-7 h-7 mr-2' style={{ marginLeft: 'auto' }} />
       </div>
       <hr style={{ opacity: 0.2 }} />
-      
+
       <div className="flex text-custom-blue pt-8 pb-8 pl-12 pr-0">
         <img src="/icons/mail.svg" alt="email" className="w-6 h-6 mr-2 pr-0" />
         <div>{emailAddress}
@@ -91,7 +89,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
       <div className="flex items-center justify-start text-custom-yellow pt-8 pb-8 pl-12 pr-0">
         <img src='/icons/paymentmethod.svg' alt="email" className="w-6 h-6 mr-2 pr-0" />
         <div className='text-custom-yellow cursor-pointer' onClick={PaymentCards}>
-        {paymentMethod}
+          {paymentMethod}
         </div>
       </div>
       <hr style={{ opacity: 0.2 }} />
