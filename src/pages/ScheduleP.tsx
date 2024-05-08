@@ -8,11 +8,17 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { useJsApiLoader } from '@react-google-maps/api';
 
 
 
 const ScheduleP: React.FC = () => {
 
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ',
+    libraries: ['geometry', 'drawing'],
+  });
 
   const [showFilters, setShowFilters] = useState(false);
   
@@ -37,8 +43,8 @@ const ScheduleP: React.FC = () => {
     <IonPage>
       <IonContent fullscreen>
         
-        <LoadScript googleMapsApiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ">
-          <GoogleMap
+        
+        {isLoaded &&  <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={14}
             center={center}
@@ -83,7 +89,7 @@ const ScheduleP: React.FC = () => {
               </div>
             </div>
           </GoogleMap>
-        </LoadScript>
+        }
 
       </IonContent>
 
