@@ -99,6 +99,12 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         </div>
       </div>
       <hr style={{ opacity: 0.2 }} />
+      <div className="flex items-center justify-start text-custom-blue pt-8 pb-8 pl-12 pr-0">
+        <img src='/icons/pass.svg' alt="email" className="w-6 h-6 mr-2 pr-0" />
+        <div>Change Password
+        </div>
+      </div>
+      <hr style={{ opacity: 0.2 }} />
       <div style={{ height: `10px` }}></div>
     </div>
   );
