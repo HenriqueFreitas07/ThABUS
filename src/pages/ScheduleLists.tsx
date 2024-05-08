@@ -1,5 +1,4 @@
 import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonTabBar,IonTabButton, IonModal, IonTab, IonText} from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton, IonInput, IonItem,IonRouterLink } from '@ionic/react';
 import Card from '../components/Card';
 import Button from '../components/Button';
@@ -7,11 +6,16 @@ import Input from '../components/Input';
 import Icon from '../components/Icon';
 import React, { useState } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api'; 
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Polyline } from '@react-google-maps/api';
+import { useHistory } from 'react-router-dom';
+
+
 
 const ScheduleList: React.FC = () => {
-  const [isOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const history = useHistory();
 
   const cards = 
   [
@@ -23,6 +27,8 @@ const ScheduleList: React.FC = () => {
     { arrive:"21:00 PM",leave: '20:00 PM', code: 'FA-1199', stop: "Rua da Braga..." },
   ];
 
+
+  
   const mapContainerStyle = {
     width: '100%',
     height: '100%', 
@@ -46,24 +52,18 @@ const ScheduleList: React.FC = () => {
     destinationLocation
   ];
 
-  const [redirect, setRedirect] = useState(false);
 
-  const handleButtonClick = () => {
-    // Set the state to true to trigger the redirection
-    setRedirect(true);
-  };
 
-  if (redirect) {
-    // Redirect to the desired route when the state is true
-    return <Redirect to="/schedule" />;
-  }
+  
+
+ 
 
 
   return (
     <IonPage>
 
       <div slot="top" className='py-8 bg-blue '>
-              <button className='bg-blue absolute left-0 top-3' onClick={handleButtonClick}  >
+              <button className='bg-blue absolute left-0 top-3' onClick={(e )=>{e.preventDefault();setIsOpen(!isOpen); history.push("/schedule")}}  >
                 <Icon name="br-angle-left" className='text-orange text-4xl'/>
               </button>
       </div>
@@ -74,15 +74,14 @@ const ScheduleList: React.FC = () => {
       </IonCard>
   
     
-      <LoadScript googleMapsApiKey="" >
+      <LoadScript googleMapsApiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ" >
           <GoogleMap 
             mapContainerStyle={mapContainerStyle}
             zoom={14}
             center={center}
             options={mapOptions}
           >
-         <Polyline path={pathCoordinates} options={{ geodesic: true, strokeColor: '#FF0000',  strokeOpacity: 1, strokeWeight: 10}} />
-            
+           
           </GoogleMap>
           
         </LoadScript>
@@ -114,10 +113,14 @@ const ScheduleList: React.FC = () => {
                 <Icon name="br-bus" className='text-black text-xl ml-2 mr-7'/>
                 <IonText className='text-xl pb-1 pt-1'>{card.code}</IonText> 
               </div>
-              <IonButton className="bg-blue-800 text-white rounded-none flex items-center p-0 m-0">
+              <IonButton className="bg-blue-800 text-white rounded-none flex items-center p-0 m-0" 
+              onClick={(e )=>{e.preventDefault();setIsOpen(!isOpen); history.push("/realtime")}}>
                 <div className="flex items-center w-full">
                   <Icon name="br-bus" className='text-black text-xl mr-2 mt-1'/>
-                  <IonText className='text-l pb-1 pt-1'>{card.stop}</IonText> 
+                  <IonText className='text-l pb-1 pt-1'>{card.stop}
+                    
+                  
+                  </IonText> 
                 </div>
               </IonButton>
             </div>

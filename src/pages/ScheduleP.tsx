@@ -1,5 +1,4 @@
 import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton, IonInput, IonItem, IonDatetime,IonDatetimeButton,IonModal } from '@ionic/react';
 import Card from '../components/Card';
 import Button from '../components/Button';
@@ -8,7 +7,7 @@ import Icon from '../components/Icon';
 import { GoogleMap, LoadScript } from '@react-google-maps/api'; 
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -16,8 +15,8 @@ const ScheduleP: React.FC = () => {
 
 
   const [showFilters, setShowFilters] = useState(false);
-  const [redirect, setRedirect] = useState(false);
   
+  const history = useHistory();
 
   const mapContainerStyle = {
     width: '100%',
@@ -31,20 +30,14 @@ const ScheduleP: React.FC = () => {
   const mapOptions = {
     disableDefaultUI: true // Disable all default UI controls
   };
-  const handleButtonClick = () => {
-    // Set the state to true to trigger the redirection
-    setRedirect(true);
-  };
+  
 
-  if (redirect) {
-    // Redirect to the desired route when the state is true
-    return <Redirect to="/ScheduleLists" />;
-  }
+  
   return (
     <IonPage>
       <IonContent fullscreen>
         
-        <LoadScript googleMapsApiKey="">
+        <LoadScript googleMapsApiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ">
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={14}
@@ -86,7 +79,7 @@ const ScheduleP: React.FC = () => {
                 <Icon name="br-square-minus" className='inline-block mr-2 mt-0.5'  ></Icon>}
                 Filters</button>
               </div>  
-                <button className="buttonRight self-center" onClick={handleButtonClick} ><Icon name="br-search-location" className='aspect-square inline-block mt-1'></Icon></button>
+                <button className="buttonRight self-center" onClick={(e )=>{e.preventDefault(); history.push("/ScheduleLists")}} ><Icon name="br-search-location" className='aspect-square inline-block mt-1'></Icon></button>
               </div>
             </div>
           </GoogleMap>
