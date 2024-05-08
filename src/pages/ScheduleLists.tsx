@@ -9,6 +9,7 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { Link, Redirect } from 'react-router-dom';
 import { Polyline } from '@react-google-maps/api';
 import { useHistory } from 'react-router-dom';
+import { useJsApiLoader } from '@react-google-maps/api';
 
 
 
@@ -52,7 +53,11 @@ const ScheduleList: React.FC = () => {
     destinationLocation
   ];
 
-
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ',
+    libraries: ['geometry', 'drawing'],
+  });
 
   
 
@@ -74,17 +79,17 @@ const ScheduleList: React.FC = () => {
       </IonCard>
   
     
-      <LoadScript googleMapsApiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ" >
-          <GoogleMap 
+      
+        {isLoaded && <GoogleMap 
             mapContainerStyle={mapContainerStyle}
             zoom={14}
             center={center}
             options={mapOptions}
           >
            
-          </GoogleMap>
+          </GoogleMap>} 
           
-        </LoadScript>
+       
 
       <IonModal  isOpen={isOpen}  className='bg-red fixed top-1/2 left-0   max-h-1/2  z-50 flex flex-nonwrap justify-items-center items-center'>
         <IonCard  className=' flex  items-center justify-center  py-4 bg-white m-0 rounded-none border-0 border-b-0 outline-0' >
