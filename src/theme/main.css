@@ -13,6 +13,107 @@
   font-style: normal;
 }
 
+ion-input.custom {
+  
+  --color: #FBA834;
+  border-radius: 10px;
+  border: 3px solid #FBA834;
+  width: 95%;
+  height: 30px;
+  margin:7px;
+  background: rgba(2, 12, 65, 0.6);
+}
+
+
+ion-datetime-button::part(native) {
+  color: #FBA834;
+  border-radius: 10px;
+  border: 3px solid #FBA834;
+  margin:7px;
+  margin-left: 1px;
+  background: rgba(2, 12, 65, 0.6);
+}
+
+
+ .container {
+  display: flex;
+ }
+
+.buttonLeft {
+  display: flex;
+  flex: 1;
+  border-radius: 10px;
+  flex-direction: column ;
+  border: 2px solid #50C4ED;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  height: min-content;
+  width: 80%;
+  max-height: fit-content;
+  color: white;
+  background: rgba(53, 123, 253, 0.9);
+  position: relative;
+  
+  
+}
+
+.buttonRight {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  float: center;
+  height: min-content;
+  width: 15%;
+  max-height: fit-content;
+  align-items: center;
+  color: white;
+  background-color: #FBA834;
+  position: relative;
+
+  
+}
+
+
+.header {
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  float: center;
+  height: min-content;
+  width: 95%;
+  max-height: fit-content;
+  align-items: center;
+  color: white;
+  background-color: #130553;
+  position: relative;
+
+  
+
+}
+
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 10px;
+  padding: 7px;
+  margin: 10px;
+  top: 05%;;
+  width: 95%;
+  background: rgba(0, 0, 0, 0.2);
+
+  
+}
+
+
 
 .wrapper {
     display: flex;
