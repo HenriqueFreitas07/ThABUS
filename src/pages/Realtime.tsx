@@ -1,60 +1,21 @@
 import {
   IonContent,
-  IonHeader,
+
   IonInput,
-  IonLoading,
+
   IonPage,
-  IonText,
-  IonTitle,
-  IonToolbar,
+
 } from "@ionic/react";
 import GoogleMap from "../components/GoogleMap";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
-import { AdvancedMarkerProps } from "@vis.gl/react-google-maps";
-import myMarker from "icons/myLocation.png";
-import Button from "../components/Button";
+import { useParams } from 'react-router-dom';
+
 import Icon from "../components/Icon";
 
-const configMap = {
-  mapType: "MAP_TYPE_TERRAIN",
-  center: {
-    lat: 0,
-    lng: 0,
-  },
-  enableHighAccuracy: false,
-  disableDefaultUI: true,
-  zoom: 15,
-  controls: {
-    compass: false,
-    myLocation: true,
-    myLocationButton: true,
-    indoorPicker: true,
-    zoom: true,
-    mapTypeControl: true,
-    streetViewControl: false,
-    pan: true,
-  },
-  gestures: {
-    scroll: true,
-    tilt: true,
-    zoom: true,
-    rotate: true,
-  },
-  styles: [
-    {
-      featureType: "poi",
-      elementType: "labels",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-  ],
-};
 
 const RealTime = () => {
+
   const [coordinates, setCoordinates] = useState<{
     lat: number;
     lng: number;
@@ -62,12 +23,6 @@ const RealTime = () => {
   let busCode: string | null | undefined = null;
   const [search, setSearch] = useState<string | null>();
   let selected = false;
-
-  // const openLoading = () => {
-  //   const loading = document.getElementById("open-loading");
-  //   loading?.click();
-  // };
-  // openLoading();
 
   const changeBusCode = () => {
     setSearch(busCode);
