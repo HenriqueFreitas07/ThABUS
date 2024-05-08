@@ -63,6 +63,7 @@ const buttons = [
 ]
 setupIonicReact();
 
+setupIonicReact();
 const App: React.FC = () => {
   // let currentColor;
   // let color = ["text-light-blue", "text-orange", "text-orange", "text-orange", "text-orange"];

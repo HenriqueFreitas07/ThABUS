@@ -33,11 +33,11 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
   const history = useHistory();
 
   const BuyingPass = () => {
-    history.push("/buypass");
+    history.push("/BuyPass");
   };
 
   const PaymentCards = () => {
-    history.push("/paymentcards");
+    history.push("/PaymentCards");
   };
 
   return (
