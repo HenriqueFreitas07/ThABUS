@@ -2,14 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 /*  icons */
 @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-brands/css/uicons-brands.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Allerta Stencil', sans-serif;
-}
-.allerta-stencil-regular {
+*,body {
   font-family: "Allerta Stencil", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -117,9 +115,6 @@ ion-datetime-button::part(native) {
 
 
 
-
-
-
 .wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -162,3 +157,28 @@ ion-datetime-button::part(native) {
   .custom-ripple {
     color: #501ace;
   }
+
+
+  .stacked-slider {
+    position: relative;
+    height: 500px; /* Adjust based on your card height and the number of cards */
+    width: 100%;
+  }
+  
+  .pass-card {
+    position: absolute;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid white;
+    left: 50%;
+    top: 50%;
+    width: 100%; /* Adjust based on your preference */
+    transition: transform 0.3s ease, z-index 0s linear 0.3s; /* Smooth transition for the transform */
+  }
+  
+  .pass-card.active {
+    transform: translate(-50%, -50%) scale(1.05); /* Slightly scale up the active card */
+    z-index: 100; /* Bring the active card to the front */
+    transition: transform 0.3s ease, z-index 0s linear; /* Transition for the active card */
+  }
+  

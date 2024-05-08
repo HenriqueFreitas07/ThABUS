@@ -4,12 +4,15 @@
 /node_modules
 /.pnp
 .pnp.js
-
+backup.txt
 # testing
 /coverage
 
 # production
 /dist
+# android and ios projects 
+/android
+/ios
 
 # misc
 .DS_Store
@@ -17,6 +20,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.capacitor.config.ts
 /.vscode/*
 !/.vscode/extensions.json
 .idea
