@@ -40,15 +40,19 @@ import Payment from "./pages/PaymentP";
 import RealTime from "./pages/Realtime";
 import Profile from "./pages/Profile";
 import ScheduleLists from "./pages/ScheduleLists";
+import PaymentCards from "./pages/PaymentCards";
+import BuyPass from './pages/BuyPass'
 import { useEffect, useState } from "react";
 
 const pages =
   [
-    { name: "Home", path: '/home', component: Home, icon: "br-home" },
-    { name: "Schedule Page", path: '/schedule', component: Schedule, icon: "br-car-journey" },
-    { name: "Payment Page", path: '/payment', component: Payment, icon: "br-wallet" },
-    { name: "RealTime", path: '/realtime', component: RealTime, icon: "br-land-location" },
-    { name: "Profile", path: '/profile', component: Profile, icon: "br-admin-alt" },
+    { name:"Home",path: '/home', component: Home, icon: "br-home" },
+    { name:"Schedule Page",path: '/schedule', component: Schedule, icon:"br-car-journey" },
+    { name:"Payment Page",path: '/payment', component: Payment, icon:"br-wallet" },
+    { name:"RealTime",path: '/realtime', component: RealTime, icon:"br-land-location" },
+    { name:"Profile",path: '/profile', component: Profile, icon:"br-admin-alt" },
+    { name:"BuyPass",path: '/BuyPass', component: BuyPass, icon:"" },
+    { name:"PaymentCards",path: '/PaymentCards', component: PaymentCards, icon:"" },
   ];
 
 setupIonicReact();
