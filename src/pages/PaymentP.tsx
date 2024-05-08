@@ -41,22 +41,22 @@ const passCards = [
   {
     id: 1,
     zone: "Linha 1",
-    valid: "02/12",
+    valid: "15/06/2024",
   },
   {
     id: 2,
     zone: "Linha 2",
-    valid: "02/12",
+    valid: "15/06/2024",
   },
   {
     id: 3,
     zone: "Linha 3",
-    valid: "02/12",
+    valid: "15/05/2024",
   },
   {
     id: 4,
-    zone: "Linha 4",
-    valid: "02/24",
+    zone: "Litoral",
+    valid: "15/06/2024",
   },
 ];
 

@@ -2,10 +2,18 @@ import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonTabB
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton, IonInput, IonItem, IonRouterLink } from '@ionic/react';
 import Icon from '../components/Icon';
 import React, { useState } from 'react';
-import { GoogleMap, Marker } from '@react-google-maps/api';
+import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { useHistory } from 'react-router-dom';
 import { useJsApiLoader } from '@react-google-maps/api';
-
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+  InfoWindow,
+  AdvancedMarkerProps,
+} from "@vis.gl/react-google-maps";
+import { Poly } from '@ionic-native/google-maps';
 
 
 type ScheduleListProps = {
@@ -33,7 +41,7 @@ const ScheduleList = ({ close }: ScheduleListProps) => {
 
   };
 
-  const startLocation = { lat: 2 };
+  const startLocation = { lat:   40.631719829813534,  lng:-8.654768841015478 };
   const destinationLocation = { lat: 40.643752439166505, lng: -8.641114860961688 };
 
   const mapOptions = {
@@ -54,6 +62,7 @@ const ScheduleList = ({ close }: ScheduleListProps) => {
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ',
     libraries: ['geometry', 'drawing'],
+    
   });
 
 
@@ -70,20 +79,31 @@ const ScheduleList = ({ close }: ScheduleListProps) => {
       </IonCard>
 
 
-
-      {isLoaded && (<GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={14}
-        center={center}
-        options={mapOptions}
-      >
-        <Marker
-          position={destinationLocation}
-        />
-
-      </GoogleMap>)}
-
-
+      <div className="map-container">
+      <APIProvider apiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ" >
+        <Map
+          mapId={"fcdc1a0f0ad84c5e"}
+          defaultCenter={center}
+          disableDefaultUI={true}
+          gestureHandling={"greedy"}
+          defaultZoom={13}
+        >
+          <AdvancedMarker
+            position={startLocation}
+            onClick={() => console.log("Marker clicked")}
+          >
+          
+          </AdvancedMarker>
+          <AdvancedMarker
+            position={destinationLocation}
+            onClick={() => console.log("Marker clicked")}
+          >
+          
+          </AdvancedMarker>
+          
+        </Map>
+      </APIProvider>
+      </div>
 
       <IonCard className=' flex  items-center justify-center  py-4 bg-white m-0 rounded-none border-0 border-b-0 outline-0' >
         <Icon name="br-list" className='text-orange text-xl mr-2' />

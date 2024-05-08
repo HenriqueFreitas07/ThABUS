@@ -107,7 +107,7 @@ const ScheduleP: React.FC = () => {
                 </IonButtons>
               </IonToolbar>
             </IonHeader>
-            <IonContent>
+            <IonContent >
               <ScheduleList close={()=> {modal.current?.dismiss(); setIsOpen(false)} } />
             </IonContent>
           </IonModal>

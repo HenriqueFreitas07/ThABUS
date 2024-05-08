@@ -53,7 +53,8 @@ const RealTime = () => {
           <div className=" z-10 w-5/6 p-4 pt-0 mt-4 bg-blue absolute top-0 left-[50%] translate-x-[-50%]   border-2 rounded-md border-orange flex ">
             <IonInput onIonChange={(event: any) => { busCode = event.detail.value; }} className="text-white mt-2 " color="warning" labelPlacement="floating">
               <div slot="label" className="text-white">
-                Search Bus Code...(XX-XXXX)
+                Search Bus Code
+                (XX-XXXX)
               </div>
             </IonInput>
             <button onClick={changeBusCode} className="w-fill border-none h-full mt-6 focus:border-none ">
