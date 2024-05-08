@@ -50,7 +50,7 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
     };
   
     return (
-      <div className="paypal-form-container">
+      <div className="paypal-form-container ">
         <h2 className="paypal-form-title pb-5">Pay with Paypal</h2>
         <form onSubmit={handleSubmit}>
           <div className="paypal-form-group">
@@ -116,7 +116,7 @@ const CardsInfo: React.FC<CardsInfoProps> = ({
               <img src={payOptTwo} alt="Option Two" style={{ width: '50px', margin: 'auto' }} />
             </button>
           </div>
-          <div className="info flex mb-2 ml-5 pt-5" style={{ width: '100%', flexDirection: 'column' }}>
+          <div className="info flex m5 pt-5" style={{ width: '100%', flexDirection: 'column' }}>
             {activeButton === 'button1' && (
               <div style={{ width: '100%' }}>
                 {selectcard}

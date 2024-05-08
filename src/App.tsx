@@ -61,6 +61,7 @@ const buttons = [
   { name: "RealTime", path: '/realtime', component: RealTime, icon: "br-land-location" },
   { name: "Profile", path: '/profile', component: Profile, icon: "br-admin-alt" },
 ]
+setupIonicReact();
 
 const App: React.FC = () => {
   // let currentColor;
