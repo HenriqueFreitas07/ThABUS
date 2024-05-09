@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonDatetimeButton } from '@ionic/react';
 import Icon from '../components/Icon';
 import Carousel from '../components/Carousel';
 import Card from '../components/Card';
@@ -37,7 +37,12 @@ const Home: React.FC = () => {
           </div>
           <div className='w-5/6 rounded-md h-0 border-[1px] mx-auto border-light-blue ' />
           {/* Card */}
-          
+          <div className="w-full h-fit py-5 text-center flex justify-center">
+            <Icon name='br-info' className='text-gray opacity-50 text-xl my-auto' />
+            <div className="p-2 text-gray opacity-50">
+              No routes added
+            </div>
+          </div>
           {/* <RoutesListCard origin='Aveiro,Forum ' destination='Aveiro' time='10:00h, Quarta-feira' id='QW-4720' /> */}
         </div>
       </IonContent>
