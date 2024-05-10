@@ -1,35 +1,33 @@
-import React, { useState } from 'react';
-import { IonAlert, IonButton } from '@ionic/react';
-import { ButtonProps} from './Button';
-import Button from './Button';
-type AlertProps = {
-    text: string ,
-    buttonText: any ,
-    header: string ,
-    subheader: string ,
-    className?:string,
-    buttonClass?:string,
-    alertChoice?:string[],
-    props?:any[]
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
+const MySwal = withReactContent(Swal)
+
+
+
+function AlertError(Message: string, title = "Oops...") {
+    MySwal.fire({
+        icon: 'error',
+        title: title,
+        text: Message,
+        heightAuto: false
+    })
+}
+function AlertInfo(Message: string, title = "Info") {
+    MySwal.fire({
+        icon: 'info',
+        title: title,
+        text: Message,
+        heightAuto: false
+    })
+}
+function AlertSuccess(Message: string, title = "Yay!") {
+    MySwal.fire({
+        icon: 'success',
+        title: title,
+        text: Message,
+        heightAuto: false
+    })
 }
 
-function Alert({buttonText,text, className,header,subheader,alertChoice=["Ok"],buttonClass,...props}: AlertProps) {
-  const [isOpen,setIsOpen] = useState(false);
-
-return (
-    <>
-        <Button className={buttonClass} onClick={() => { setIsOpen(true) }}>{buttonText}</Button>
-        <IonAlert
-            isOpen={isOpen}
-            onDidDismiss={() => setIsOpen(false)}
-            trigger="present-alert"
-            header={header}
-            subHeader={subheader}
-            message={text}
-            buttons={alertChoice}
-        ></IonAlert>
-    </>
-);
-}
-export default Alert;
+export { AlertError, AlertInfo, AlertSuccess }
