@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import '../theme/main.css'; 
+import '../theme/main.css';
 import Navbar from './Nav';
+import { IonSelect, IonSelectOption } from '@ionic/react';
+import { AlertSuccess } from './Alert';
 
-interface BuyingPassProps {}
+interface BuyingPassProps { }
 
 const BuyingPass: React.FC<BuyingPassProps> = () => {
   const [formData, setFormData] = useState({
@@ -11,14 +13,17 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
     cardNumber: '',
     expirationDate: '',
     cvv: '',
-    selectedZones: [] as string[], // Definindo selectedZones como uma array de strings
+    selectedZones: '', // Definindo selectedZones como uma array de strings
     price: 0,
+    paymentMethod: '',
+    paypalEmail: '',
+    phone:'',
     showModal: false,
   });
 
   const [secondsLeft] = useState(3);
 
-  const zonePrice = 3.99;
+  const zonePrice = 2.2;
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -31,22 +36,19 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
     return () => clearTimeout(timer);
   }, [formData.showModal, secondsLeft]);
 
-  const handleChange = (zone: string) => {
-    const selectedZones = [...formData.selectedZones];
-    const zoneIndex = selectedZones.indexOf(zone);
-
-    if (zoneIndex === -1) {
-      selectedZones.push(zone);
-    } else {
-      selectedZones.splice(zoneIndex, 1);
-    }
-
-    const price = 20;
-
+  const handleChangeZone = (zone: string) => {
+    const price = 20 + zonePrice * (zone.length);
+    const selectedZones = zone;
     setFormData((prevState) => ({
       ...prevState,
       selectedZones,
       price,
+    }));
+  };
+  const handleChangeMethod = (id: string) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      paymentMethod: id,
     }));
   };
 
@@ -56,10 +58,8 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
   };
 
   const showModal = () => {
-    setFormData((prevState) => ({
-      ...prevState,
-      showModal: true,
-    }));
+    AlertSuccess('Your payment has been successfully submitted!');
+    clearForm();
   };
 
   const hideModal = () => {
@@ -76,8 +76,11 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
       cardNumber: '',
       expirationDate: '',
       cvv: '',
-      selectedZones: [],
+      selectedZones: '',
       price: 0,
+      paymentMethod: '',
+      paypalEmail: '',
+      phone:'',
       showModal: false,
     });
   };
@@ -90,37 +93,58 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
         <p>With our monthly bus pass, you can travel as many times as you want within a one-month period.</p>
         <form onSubmit={handleSubmit}>
           <label htmlFor='name'>Name:</label>
-          <input placeholder='Tha Bus'type='text' id='name' name='name' value={formData.name} onChange={(e) => setFormData((prevState) => ({ ...prevState, name: e.target.value }))} required />
+          <input placeholder='Tha Bus' type='text' id='name' name='name' value={formData.name} onChange={(e) => setFormData((prevState) => ({ ...prevState, name: e.target.value }))} required />
           <label htmlFor='email'>Email:</label>
-          <input placeholder='tha@bus.com'type='email' id='email' name='email' value={formData.email} onChange={(e) => setFormData((prevState) => ({ ...prevState, email: e.target.value }))} required />
-          <label htmlFor='cardNumber'>Card Number:</label>
-          <input type='text' placeholder='1234 5678 910 111 2' id='cardNumber' name='cardNumber' value={formData.cardNumber} onChange={(e) => setFormData((prevState) => ({ ...prevState, cardNumber: e.target.value }))} required />
-          <label htmlFor='expirationDate'>Expiration Date:</label>
-          <input type='text' id='expirationDate' name='expirationDate' placeholder='MM/YY' value={formData.expirationDate} onChange={(e) => setFormData((prevState) => ({ ...prevState, expirationDate: e.target.value }))} required />
-          <label htmlFor='cvv'>CVV:</label>
-          <input type='text' id='cvv' name='cvv' placeholder='123' value={formData.cvv} onChange={(e) => setFormData((prevState) => ({ ...prevState, cvv: e.target.value }))} required />
+          <input placeholder='tha@bus.com' type='email' id='email' name='email' value={formData.email} onChange={(e) => setFormData((prevState) => ({ ...prevState, email: e.target.value }))} required />
 
-          <label>Zones:</label>
-          <div className='zone-buttons'>
-            <button className={formData.selectedZones.includes('Barra') ? 'zone-button selected' : 'zone-button'} onClick={() => handleChange('Barra')}>Barra</button>
-            <button className={formData.selectedZones.includes('Industrial') ? 'zone-button selected' : 'zone-button'} onClick={() => handleChange('Industrial')}>Industrial</button>
-            <button className={formData.selectedZones.includes('Litoral') ? 'zone-button selected' : 'zone-button'} onClick={() => handleChange('Litoral')}>Litoral</button>
-            <button className={formData.selectedZones.includes('Universidade') ? 'zone-button selected' : 'zone-button'} onClick={() => handleChange('Universidade')}>Universidade</button>
-            <button className={formData.selectedZones.includes('Centro') ? 'zone-button selected' : 'zone-button'} onClick={() => handleChange('Centro')}>Centro</button>
+          <label className="pt-2" >Payment Method:</label>
+          <IonSelect className="pt-2" fill="outline" color="warning" placeholder="Select a payment method..."
+            onIonChange={(e) => handleChangeMethod(e.detail.value)}
+          >
+            <IonSelectOption value="1">Credit Card</IonSelectOption>
+            <IonSelectOption value="2">Paypal</IonSelectOption>
+            <IonSelectOption value="3">MBWay</IonSelectOption>
+          </IonSelect>
+          <div className={`${formData.paymentMethod ==='' ? 'hidden' : ''} my-2 rounded-md w-full p-3 border-2 border-orange`}>
+            {formData.paymentMethod === '1' && (
+              <>
+                <label htmlFor='cardNumber'>Card Number:</label>
+                <input placeholder='1234 5678 1234 5678' type='text' id='cardNumber' name='cardNumber' value={formData.cardNumber} onChange={(e) => setFormData((prevState) => ({ ...prevState, cardNumber: e.target.value }))} required />
+                <label htmlFor='expirationDate'>Expiration Date:</label>
+                <input placeholder='MM/YY' type='text' id='expirationDate' name='expirationDate' value={formData.expirationDate} onChange={(e) => setFormData((prevState) => ({ ...prevState, expirationDate: e.target.value }))} required />
+                <label htmlFor='cvv'>CVV:</label>
+                <input placeholder='123' type='text' id='cvv' name='cvv' value={formData.cvv} onChange={(e) => setFormData((prevState) => ({ ...prevState, cvv: e.target.value }))} required />
+              </>
+            )}
+            {formData.paymentMethod === '2' && (
+              <>
+                <label htmlFor='email'>Paypal email:</label>
+                <input placeholder='tha@bus.com' type='email' id='email' name='email' value={formData.paypalEmail} onChange={(e) => setFormData((prevState) => ({ ...prevState, email: e.target.value }))} required />
+              </>
+            )}
+            {formData.paymentMethod === '3' && (
+              <>
+                <label htmlFor='phone'>Phone:</label>
+                <input placeholder='912345678' className="p-2" type="number" maxLength={9} id='phone' name='phone' value={formData.phone} onChange={(e) => setFormData((prevState) => ({ ...prevState, phone: e.target.value }))} required />
+              </>
+            )}
           </div>
 
+          <label className="pt-2" >Zones:</label>
+          <IonSelect fill="outline" className="pt-2" color="warning" placeholder="Select the zone of the pass... "
+            onIonChange={(e) => handleChangeZone(e.detail.value)}
+          >
+            <IonSelectOption value="Barra">Barra</IonSelectOption>
+            <IonSelectOption value="Industrial">Industrial</IonSelectOption>
+            <IonSelectOption value="Litoral">Litoral</IonSelectOption>
+            <IonSelectOption value="Universidade">Universidade</IonSelectOption>
+            <IonSelectOption value="Centro">Centro</IonSelectOption>
+          </IonSelect>
           <p className='price-info'>Price: {formData.price.toFixed(2)}€</p>
 
           <input type='submit' value='Pay' className='submit-button' />
         </form>
       </div>
-      {formData.showModal && (
-        <div className='modal'>
-          <div className='modal-content'>
-            <p>Your payment has been successfully submitted!</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -6,9 +6,7 @@ const Profile: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <BuyingPass
-         
-        />
+        <BuyingPass/>
       </IonContent>
     </IonPage>
   );
