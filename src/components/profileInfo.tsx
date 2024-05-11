@@ -87,7 +87,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
       </div>
       <hr style={{ opacity: 0.2 }} />
       <div className="flex items-center justify-start text-custom-yellow pt-8 pb-8 pl-12 pr-0">
-        <img src='/icons/paymentmethod.svg' alt="email" className="w-6 h-6 mr-2 pr-0" />
+        <img src='/icons/paymentmethod.svg' alt="email" className="w-6 h-6 mr-2 pr-0"/>
         <div className='text-custom-yellow cursor-pointer' onClick={PaymentCards}>
           {paymentMethod}
         </div>

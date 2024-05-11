@@ -7,6 +7,12 @@ import {
   AdvancedMarkerProps,
 } from "@vis.gl/react-google-maps";
 import { useState } from "react";
+import Icon from "./Icon";
+
+<script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js"></script>
+const icon = document.createElement("div");
+
+icon.innerHTML = '<i class="fa fa-pizza-slice fa-lg"></i>';
 
 type GoogleMapProps = {
   // Define props for the component here
@@ -190,13 +196,8 @@ export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
               position={marker.position}
               onClick={() => console.log(marker.code)}
             >
-              <h1>{marker.name}</h1>
-              <Pin
-                scale={marker.scale}
-                background={marker.pinBg}
-                glyphColor={marker.glyphColor}
-                borderColor={marker.boderColor}
-              />
+              
+              <Icon name="br-bus" className='text-blue text-3xl   ' />
             </AdvancedMarker>
           ))}
         </Map>
