@@ -18,9 +18,11 @@ export default function Carousel({ items }: CarouselProps) {
     effect={'cards'}
     grabCursor={true}
     modules={[EffectCards]}
+    cardsEffect={{slideShadows: false}}
+    
     >
       {items.map((item, index) => {
-        return <SwiperSlide key={index}>{item}</SwiperSlide>;
+        return <SwiperSlide className="shadow-none" key={index}>{item}</SwiperSlide>;
       })}
     </Swiper>
   );

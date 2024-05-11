@@ -6,16 +6,17 @@ type CreditCardProps = {
     cardNumber: string;
     expiry: string;
     cvv: string;
+    className?: string;
     focused?: string;
     setFocus?: (value: string) => void;
 }
 
 
 
-export default function CreditCCard({ name, cardNumber, expiry, cvv, focused, setFocus }: CreditCardProps) {
+export default function CreditCCard({ name, cardNumber, expiry, cvv, className, focused, setFocus }: CreditCardProps) {
     return (
         <>
-            <div className="Ccard">
+            <div className={`Ccard ${className}`}>
                 <div className="Ccard__front Ccard__part">
                     <p className="Ccard_numer">{cardNumber}</p>
                     <div className="flex space-x-2">
