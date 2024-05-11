@@ -6,10 +6,10 @@ import payOptTwo from '/icons/opttwo.svg';
 
 const Payment: React.FC = () => {
   return (
-    <IonPage>
+    <IonPage className='overflow-auto'>
       <IonContent fullscreen>
         <CardsInfo 
-          paymentoptions="Payment Options"
+          paymentoptions=""
           optionone={payOptOne}
           optiontwo={payOptTwo}
           selectcard="Select Card"
