@@ -8,6 +8,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import { useState } from "react";
 import Icon from "./Icon";
+import { AlertInfo, ToastInfo } from "./Alert";
 
 <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js"></script>
 const icon = document.createElement("div");
@@ -21,6 +22,7 @@ type GoogleMapProps = {
 };
 const stops = [
   {
+    id: 1,
     name: "Aveiro Hospital Bus Stop",
     pinBg: "#333A76",
     glyphColor: "#FFFFFF",
@@ -30,6 +32,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 2,
     name: "Aveiro Train Station Bus Stop",
     pinBg: "#333A74",
     glyphColor: "#FFFFFF",
@@ -39,6 +42,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 3,
     name: "Aveiro University Bus Stop",
     pinBg: "#333A75",
     glyphColor: "#FFFFFF",
@@ -48,6 +52,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 4,
     name: "Casa das Framboesas",
     pinBg: "#333A78",
     glyphColor: "#FFFFFF",
@@ -57,6 +62,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 5,
     name: "Fonte de Esgueira",
     pinBg: "#333A82",
     glyphColor: "#FFFFFF",
@@ -66,6 +72,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 6,
     name: "Igreja de Esgueira",
     pinBg: "#333A81",
     glyphColor: "#FFFFFF",
@@ -75,6 +82,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 7,
     name: "Gen. Costa Cascais",
     pinBg: "#333A80",
     glyphColor: "#FFFFFF",
@@ -84,6 +92,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 8,
     name: "Aveiro Old Prison Bus Stop",
     pinBg: "#333A77",
     glyphColor: "#FFFFFF",
@@ -93,6 +102,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 9,
     name: "Aveiro Forum Bus Stop",
     pinBg: "#333A73",
     glyphColor: "#FFFFFF",
@@ -102,6 +112,7 @@ const stops = [
     scale: 1
   },
   {
+    id: 10,
     name: "Tanques de Esgueira",
     pinBg: "#333A79",
     glyphColor: "#FFFFFF",
@@ -145,6 +156,7 @@ export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
     if (busStop) {
       busStops = []
       busStops.push({
+        id: busStop.id,
         position: busStop.position,
         name: busStop.name,
         pinBg: "",
@@ -177,9 +189,6 @@ export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
             onClick={() => console.log("Marker clicked")}
           >
             <Pin />
-            <InfoWindow>
-              <div>San Francisco</div>
-            </InfoWindow>
           </AdvancedMarker>
           {Allmarkers?.map((marker, index) => (
             <AdvancedMarker
@@ -187,17 +196,17 @@ export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
               position={marker.position}
             >
 
-              <Pin background={"#FBA834"} />
+              <Icon name="br-bus" className='text-orange text-3xl   ' />
             </AdvancedMarker>
           ))}
           {busStops?.map((marker, index) => (
             <AdvancedMarker
-              key={index}
-              position={marker.position}
-              onClick={() => console.log(marker.code)}
+            key={index}
+            position={marker.position}
+            onClick={() => ToastInfo(marker.code, marker.name)}
             >
-              
-              <Icon name="br-bus" className='text-blue text-3xl   ' />
+            <Icon name="br-stop-circle" className='text-blue text-3xl   ' />
+
             </AdvancedMarker>
           ))}
         </Map>
