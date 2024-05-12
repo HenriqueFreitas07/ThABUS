@@ -1,0 +1,170 @@
+{
+    "searchingCode": "QW-4789",
+    "pass": [
+        {
+            "Name": "Pass 1",
+            "Description": "This is the first pass",
+            "PassType": "FirstPass",
+            "PassId": 1
+        },
+        {
+            "Name": "Pass 2",
+            "Description": "This is the second pass",
+            "PassType": "SecondPass",
+            "PassId": 2
+        }
+    ],
+    "paymentMethods": {
+        "creditCards": [
+            {
+                "Name": "Credit Card 1",
+                "Description": "This is the first credit card",
+                "CreditCardType": "Visa",
+                "CreditCardId": 1
+            },
+            {
+                "Name": "Credit Card 2",
+                "Description": "This is the second credit card",
+                "CreditCardType": "MasterCard",
+                "CreditCardId": 2
+            }
+        ],
+        "Paypal": {
+            "Name": "Paypal",
+            "Description": "This is the paypal payment method",
+            "PaypalId": 1
+        }
+    },
+    "busStops": [
+        {
+            "id": 1,
+            "name": "Aveiro Hospital Bus Stop",
+            "pinBg": "#333A76",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4723",
+            "position": {
+                "lat": 40.635,
+                "lng": -8.659
+            },
+            "scale": 1
+        },
+        {
+            "id": 2,
+            "name": "Aveiro Train Station Bus Stop",
+            "pinBg": "#333A74",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4721",
+            "position": {
+                "lat": 40.64427,
+                "lng": -8.64554
+            },
+            "scale": 1
+        },
+        {
+            "id": 3,
+            "name": "Aveiro University Bus Stop",
+            "pinBg": "#333A75",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4722",
+            "position": {
+                "lat": 40.629087,
+                "lng": -8.65787
+            },
+            "scale": 1
+        },
+        {
+            "id": 4,
+            "name": "Casa das Framboesas",
+            "pinBg": "#333A78",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4725",
+            "position": {
+                "lat": 40.6441,
+                "lng": -8.6505
+            },
+            "scale": 1
+        },
+        {
+            "id": 5,
+            "name": "Fonte de Esgueira",
+            "pinBg": "#333A82",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4729",
+            "position": {
+                "lat": 40.6385,
+                "lng": -8.6342
+            },
+            "scale": 1
+        },
+        {
+            "id": 6,
+            "name": "Igreja de Esgueira",
+            "pinBg": "#333A81",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4728",
+            "position": {
+                "lat": 40.6399,
+                "lng": -8.6364
+            },
+            "scale": 1
+        },
+        {
+            "id": 7,
+            "name": "Gen. Costa Cascais",
+            "pinBg": "#333A80",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4727",
+            "position": {
+                "lat": 40.6445,
+                "lng": -8.6533
+            },
+            "scale": 1
+        },
+        {
+            "id": 8,
+            "name": "Aveiro Old Prison Bus Stop",
+            "pinBg": "#333A77",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4724",
+            "position": {
+                "lat": 40.6415,
+                "lng": -8.65358
+            },
+            "scale": 1
+        },
+        {
+            "id": 9,
+            "name": "Aveiro Forum Bus Stop",
+            "pinBg": "#333A73",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4720",
+            "position": {
+                "lat": 40.64071895550601,
+                "lng": -8.652758379697358
+            },
+            "scale": 1
+        },
+        {
+            "id": 10,
+            "name": "Tanques de Esgueira",
+            "pinBg": "#333A79",
+            "glyphColor": "#FFFFFF",
+            "boderColor": "#FFFFFF",
+            "code": "QW-4726",
+            "position": {
+                "lat": 40.6387,
+                "lng": -8.6341
+            },
+            "scale": 1
+        }
+    ]
+}

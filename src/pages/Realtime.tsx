@@ -9,11 +9,12 @@ import {
 import GoogleMap from "../components/GoogleMap";
 import { useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
-import { useParams } from 'react-router-dom';
 
 import Icon from "../components/Icon";
-
-
+import { getValue, setValue } from "../getSet";
+import data from "../data.json";
+import { AlertError } from "../components/Alert";
+import { readFromLocalStorage, writeToLocalStorage } from "../storage";
 const RealTime = () => {
 
   const [coordinates, setCoordinates] = useState<{
@@ -26,6 +27,14 @@ const RealTime = () => {
 
   const changeBusCode = () => {
     setSearch(busCode);
+    writeToLocalStorage("search", null);
+  }
+  const passingCode = (): string | undefined | null | number => {
+    let code = readFromLocalStorage("search");
+    if (code) {
+      return code;
+    }
+    return "";
   }
 
   useEffect(() => {
@@ -36,7 +45,7 @@ const RealTime = () => {
           const { latitude, longitude } = position.coords;
           setCoordinates({ lat: latitude, lng: longitude });
         } catch (error) {
-          alert("Could get the location, please enable location services.");
+          AlertError("Geolocation Unavailable")
         }
         selected = true;
       };
@@ -51,7 +60,7 @@ const RealTime = () => {
         {/* content */}
         <div className="w-full h-full overflow-y-clip relative">
           <div className=" z-10 w-5/6 p-4 pt-0 mt-4 bg-blue absolute top-0 left-[50%] translate-x-[-50%]   border-2 rounded-md border-orange flex ">
-            <IonInput onIonChange={(event: any) => { busCode = event.detail.value; }} className="text-white mt-2 " color="warning" labelPlacement="floating">
+            <IonInput onIonChange={(event: any) => { busCode = event.detail.value; }} value={passingCode()} className="text-white mt-2 " color="warning" labelPlacement="floating">
               <div slot="label" className="text-white">
                 Search Bus Code
               </div>

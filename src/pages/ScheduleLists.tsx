@@ -14,11 +14,13 @@ import {
   AdvancedMarkerProps,
 } from "@vis.gl/react-google-maps";
 import { Poly } from '@ionic-native/google-maps';
+import { writeToLocalStorage } from '../storage';
 
 
 type ScheduleListProps = {
   close: () => void;
 };
+
 const ScheduleList = ({ close }: ScheduleListProps) => {
 
   const history = useHistory();
@@ -41,7 +43,7 @@ const ScheduleList = ({ close }: ScheduleListProps) => {
 
   };
 
-  const startLocation = { lat:   40.631719829813534,  lng:-8.654768841015478 };
+  const startLocation = { lat: 40.631719829813534, lng: -8.654768841015478 };
   const destinationLocation = { lat: 40.643752439166505, lng: -8.641114860961688 };
 
   const mapOptions = {
@@ -62,13 +64,16 @@ const ScheduleList = ({ close }: ScheduleListProps) => {
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ',
     libraries: ['geometry', 'drawing'],
-    
+
   });
 
-
-
-
-
+  const realtimeRedirect = (card: any) => {
+    close();
+    writeToLocalStorage("search", card.code);
+    console.log(card.code);
+    console.log(localStorage)
+    document.getElementById("tab-button-/realtime")?.click()
+  }
 
   return (
     <>
@@ -80,29 +85,29 @@ const ScheduleList = ({ close }: ScheduleListProps) => {
 
 
       <div className="map-container">
-      <APIProvider apiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ" >
-        <Map
-          mapId={"fcdc1a0f0ad84c5e"}
-          defaultCenter={center}
-          disableDefaultUI={true}
-          gestureHandling={"greedy"}
-          defaultZoom={13}
-        >
-          <AdvancedMarker
-            position={startLocation}
-            onClick={() => console.log("Marker clicked")}
+        <APIProvider apiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ" >
+          <Map
+            mapId={"fcdc1a0f0ad84c5e"}
+            defaultCenter={center}
+            disableDefaultUI={true}
+            gestureHandling={"greedy"}
+            defaultZoom={13}
           >
-          
-          </AdvancedMarker>
-          <AdvancedMarker
-            position={destinationLocation}
-            onClick={() => console.log("Marker clicked")}
-          >
-          
-          </AdvancedMarker>
-          
-        </Map>
-      </APIProvider>
+            <AdvancedMarker
+              position={startLocation}
+              onClick={() => console.log("Marker clicked")}
+            >
+
+            </AdvancedMarker>
+            <AdvancedMarker
+              position={destinationLocation}
+              onClick={() => console.log("Marker clicked")}
+            >
+
+            </AdvancedMarker>
+
+          </Map>
+        </APIProvider>
       </div>
 
       <IonCard className=' flex  items-center justify-center  py-4 bg-white m-0 rounded-none border-0 border-b-0 outline-0' >
@@ -132,7 +137,7 @@ const ScheduleList = ({ close }: ScheduleListProps) => {
                   <IonText className='text-xl pb-1 pt-1'>{card.code}</IonText>
                 </div>
                 <IonButton className="bg-blue-800 text-white rounded-none flex items-center p-0 m-0"
-                  onClick={(e) => { close();  document.getElementById("tab-button-/realtime")?.click() }}>
+                  onClick={() => realtimeRedirect(card)}>
                   <div className="flex items-center w-full">
                     <Icon name="br-bus" className='text-black text-xl mr-2 mt-1' />
                     <IonText className='text-l pb-1 pt-1'>{card.stop}
