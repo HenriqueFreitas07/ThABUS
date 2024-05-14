@@ -68,13 +68,13 @@ const App: React.FC = () => {
   // let currentColor;
   // let color = ["text-light-blue", "text-orange", "text-orange", "text-orange", "text-orange"];
   const [change, setChange] = useState(0);
-  const [color, setColor] = useState(["text-light-blue", "text-orange", "text-orange", "text-orange", "text-orange"]);
+  const [color, setColor] = useState(["text-light-blue dark:text-orange", "text-orange dark:text-light-blue", "text-orange dark:text-light-blue", "text-orange dark:text-light-blue", "text-orange dark:text-light-blue"]);
   useEffect(() => {
     // Function to update color based on the current URL
     const updateColor = () => {
       const path = window.location.pathname;
       console.log(path);
-      const newColor = color.map((_, idx) => (pages[idx].path === path ? "text-light-blue" : "text-orange"));
+      const newColor = color.map((_, idx) => (pages[idx].path === path ? "text-light-blue dark:text-orange" : "text-orange dark:text-light-blue"));
 
       setColor(newColor);
     };
@@ -103,13 +103,13 @@ const App: React.FC = () => {
               <Redirect to="/home" />
             </Route>
           </IonRouterOutlet>
-          <IonTabBar slot="bottom" className={`py-2 bg-blue `} id="tabs">
+          <IonTabBar slot="bottom" className={`py-2 bg-blue dark:bg-white`} id="tabs">
             {buttons.map((page, idx) => (
               <IonTabButton
                 key={idx}
                 tab={page.path}
                 href={page.path}
-                className="bg-blue"
+                className="bg-blue dark:bg-white"
                 onClick={() => { setChange(idx) }}
               >
                 <Icon name={page.icon} className={`text-2xl ${color[idx]}`} />

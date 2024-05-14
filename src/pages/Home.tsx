@@ -5,9 +5,10 @@ import Card from '../components/Card';
 
 const Home: React.FC = () => {
   const items = [
-    Card({ title: "Aveiro Bus Stop", subtitle: "", description: "Aveiro City Buses has reached its maximum capacity at Forum Aveiro Stop", image: "images/istockphoto-1371319562-612x612.jpg", className: "mt-2", classContent: "bg-light-blue p-3" }),
-    Card({ title: "Aveiro Bus Stop", subtitle: "", description: "Aveiro City Buses has reached its maximum capacity at Forum Aveiro Stop", image: "images/istockphoto-1371319562-612x612.jpg", className: "mt-2", classContent: "bg-light-blue p-3" }),
-    Card({ title: "Aveiro Bus Stop", subtitle: "", description: "Aveiro City Buses has reached its maximum capacity at Forum Aveiro Stop", image: "images/istockphoto-1371319562-612x612.jpg", className: "mt-2", classContent: "bg-light-blue p-3" }),]
+    Card({ title: "Praça do Peixe", subtitle: "", description: "Accident reported nearby. Expect delays.", image: "https://img.bndlyr.com/nbyjuvbof/_assets/nc60zgphsqn5upv1gqspm.jpg?fit=fill&w=1536&q=100", className: "mt-2", classContent: "text-md bg-orange p-3 text-white" }),
+    Card({ title: "Forum Aveiro", subtitle: "", description: "Heavy rain. Drive with caution.", image: "https://www.mundicenter.pt/folder/galeria/ficheiro/133_galeria_aveiro_3_2023_n4hhwfpkjz.jpg", className: "mt-2", classContent: "text-md bg-orange p-3 text-white" }),
+    Card({ title: "Ponte do Laço", subtitle: "", description: "Road closed. Diversion in place.", image: "images/istockphoto-1371319562-612x612.jpg", className: "mt-2", classContent: "text-md bg-orange p-3 text-white" }),
+    Card({ title: "Sé de Aveiro", subtitle: "", description: "Construction ahead. Expect delays.", image: "images/istockphoto-1371319562-612x612.jpg", className: "mt-2", classContent: "text-md bg-orange p-3 text-white" }),]
   return (
     <IonPage>
       <IonContent fullscreen className=''>

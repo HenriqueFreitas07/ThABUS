@@ -116,7 +116,7 @@ const PaymentP: React.FC = () => {
         </IonSegment>
         <div className={`w-full h-full ${activeSegment == 1 ? "hidden" : ""}`}>
           {/* Tickets */}
-          <div className="w-full px-7 justify-center text-center">
+          <div className="w-full px-7 pt-3 justify-center text-center">
             <img src="/images/qrcode.png" className="w-5/6 mx-auto" alt="" />
             <div className="w-4/6 rounded-md h-0 border-[1px] mx-auto border-black mb-2" />
             acf08a99-f0ef-4d22-a174
@@ -139,25 +139,25 @@ const PaymentP: React.FC = () => {
                 onClick={() => {
                   handlePaymentMethod(idx);
                 }}
-                className={` bg-blue ${paymentMethod == idx ? "border-2 shandow-2xl" : ""
+                className={` bg-blue dark:bg-white ${paymentMethod == idx ? "border-2 shandow-2xl" : ""
                   } rounded-md border-orange w-5/6 p-2 mx-auto my-2 columns-2  grid-flow-col flex`}
               >
-                <div className="grid-rows-2 w-full h-full grid-flow-row inline-block text-white">
+                <div className="grid-rows-2 w-full h-full grid-flow-row inline-block text-white dark:text-black">
                   <div className="w-full my-auto mx-auto px-2 flex relative ">
                     <Icon
                       name={method.icon}
-                      className="text-white text-3xl my-auto"
+                      className="text-white dark:text-black text-3xl my-auto"
                     />
                   </div>
                   <div className="w-full my-auto mx-auto py-1 flex">
                     <div className="p-2 py-0 text-[0.9rem]">{method.name}</div>
                   </div>
                 </div>
-                <div className="w-full grid-rows-2 inline-block grid-flow-row text-white px-2">
-                  <div className="aligh-middle h-1/2 w-full text-md truncate text-end ">
+                <div className="w-full grid-rows-2 inline-block grid-flow-row dark:text-black text-white px-2">
+                  <div className="aligh-middle h-1/2 w-full text-md truncate text-end dark:text-black ">
                     {method.number}
                   </div>
-                  <div className="aligh-middle h-1/2 w-full text-end">
+                  <div className="aligh-middle h-1/2 w-full text-end ">
                     <div className="text-md py-1">{method.date}</div>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ const PaymentP: React.FC = () => {
             ))}
             <div
                onClick={(e )=>{e.preventDefault(); history.push("/PaymentCards")}}
-              className={` bg-light-blue-200 border-blue border-2 rounded-md w-4/5 h-full text-center text-blue my-2 p-2 mx-auto`}
+              className={` bg-light-blue-200 border-blue dark:border-white border-2 rounded-md w-4/5 h-full text-center dark:text-white text-blue my-2 p-2 mx-auto`}
             >
               <Icon name="br-plus" className="mx-auto p-1" />
             </div>
@@ -185,7 +185,7 @@ const PaymentP: React.FC = () => {
           </div>
           <div
              onClick={(x )=>{x.preventDefault(); history.push("/BuyPass")}}
-            className={`w-full bg-transparent text-blue border-blue border-2 text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "" : "hidden"}`}>
+            className={`w-full bg-transparent text-blue dark:text-white dark:border-white border-blue border-2 text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "" : "hidden"}`}>
             <Icon name="br-plus" className="mx-auto" />
           </div>
           {/* Passes */}

@@ -11,8 +11,6 @@ import { useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
 
 import Icon from "../components/Icon";
-import { getValue, setValue } from "../getSet";
-import data from "../data.json";
 import { AlertError } from "../components/Alert";
 import { readFromLocalStorage, writeToLocalStorage } from "../storage";
 const RealTime = () => {
@@ -30,15 +28,16 @@ const RealTime = () => {
     writeToLocalStorage("search", null);
   }
   const passingCode = (): string | undefined | null | number => {
-    let code = readFromLocalStorage("search");
-    if (code) {
-      return code;
+     busCode = readFromLocalStorage("search");
+    if (busCode) {
+      return busCode;
     }
     return "";
   }
 
   useEffect(() => {
     if (!coordinates && !selected) {
+      console.log(coordinates,selected)
       const getGeolocation = async () => {
         try {
           const position = await Geolocation.getCurrentPosition();
@@ -51,8 +50,7 @@ const RealTime = () => {
       };
       getGeolocation();
     }
-    busCode = search;
-  }, [search]);
+  }, []);
 
   return (
     <IonPage>

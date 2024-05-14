@@ -12,7 +12,7 @@ type CardProps = {
 export default function Card({ title, subtitle, description, image, className, classContent }: CardProps) {
     return (
         <IonCard className={className}>
-            {image != null ? <img alt={title} src={image} /> : null}
+                {image != null ? <img alt={title} src={image} className='' /> : null}
             <IonCardContent className={classContent}>
                 <IonCardHeader className='p-0 text-start'>
                     <IonCardTitle className='p-1'>{title}</IonCardTitle>
