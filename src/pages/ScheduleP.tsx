@@ -103,8 +103,8 @@ const ScheduleP: React.FC = () => {
                     </div>
                   )}
                   <div className='container flex justify-between'>
-                    <div className='flex buttonLeft items-center'>
-                      <button className=" flex flex-row content-center" onClick={() => setShowFilters(!showFilters)} >{!showFilters &&
+                    <div className='flex buttonLeft items-center' onClick={() => setShowFilters(!showFilters)}>
+                      <button className=" flex flex-row content-center"  >{!showFilters &&
                         <Icon name="br-square-plus" className='inline-block mr-2 mt-0.5'  ></Icon>}
                         {showFilters &&
                           <Icon name="br-square-minus" className='inline-block mr-2 mt-0.5'  ></Icon>}
