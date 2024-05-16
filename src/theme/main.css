@@ -484,3 +484,7 @@ ion-datetime-button::part(native) {
     transition: transform 0.3s ease, z-index 0s linear; /* Transition for the active card */
   }
   
+.gradient-blue{
+  background: rgb(2,0,36);
+  background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(0,212,255,0.29735644257703087) 100%)
+}

@@ -13,22 +13,29 @@ import { Geolocation } from "@capacitor/geolocation";
 import Icon from "../components/Icon";
 import { AlertError } from "../components/Alert";
 import { readFromLocalStorage, writeToLocalStorage } from "../storage";
+import data from "../data.json";
+
 const RealTime = () => {
 
   const [coordinates, setCoordinates] = useState<{
     lat: number;
     lng: number;
   }>();
-  let busCode: string | null | undefined = null;
+  let busCode: string;
   const [search, setSearch] = useState<string | null>();
   let selected = false;
+  const allCodes = data.busStops.map((busStop) => busStop.code);
 
   const changeBusCode = () => {
+    if (!allCodes.includes(busCode)) {
+      AlertError("Bus Code not found")
+      return;
+    }
     setSearch(busCode);
     writeToLocalStorage("search", null);
   }
   const passingCode = (): string | undefined | null | number => {
-     busCode = readFromLocalStorage("search");
+    busCode = readFromLocalStorage("search");
     if (busCode) {
       return busCode;
     }
@@ -37,7 +44,7 @@ const RealTime = () => {
 
   useEffect(() => {
     if (!coordinates && !selected) {
-      console.log(coordinates,selected)
+      console.log(coordinates, selected)
       const getGeolocation = async () => {
         try {
           const position = await Geolocation.getCurrentPosition();

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../theme/main.css';
 import Navbar from './Nav';
 import { IonSelect, IonSelectOption } from '@ionic/react';
-import { AlertSuccess } from './Alert';
+import { AlertError, AlertSuccess } from './Alert';
+import { useHistory } from 'react-router';
+import Payment from './../pages/PaymentCards';
 
 interface BuyingPassProps { }
 
@@ -24,6 +26,8 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
   const [secondsLeft] = useState(3);
 
   const zonePrice = 2.2;
+
+  const history = useHistory();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -54,12 +58,16 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    showModal();
+    if(formData.paymentMethod === '' || formData.selectedZones === ''){
+      AlertError('Please fill all the fields');
+      return
+    }
+    showModal()
   };
 
   const showModal = () => {
-    AlertSuccess('Your payment has been successfully submitted!');
     clearForm();
+    AlertSuccess('Your payment has been successfully submitted!',"Yay!",()=>{history.push('/payment')});
   };
 
   const hideModal = () => {
@@ -119,7 +127,7 @@ const BuyingPass: React.FC<BuyingPassProps> = () => {
             {formData.paymentMethod === '2' && (
               <>
                 <label htmlFor='email'>Paypal email:</label>
-                <input placeholder='tha@bus.com' type='email' id='email' name='email' value={formData.paypalEmail} onChange={(e) => setFormData((prevState) => ({ ...prevState, email: e.target.value }))} required />
+                <input placeholder='tha@bus.com' type='email' id='email' name='email' value={formData.paypalEmail} onChange={(e) => setFormData((prevState) => ({ ...prevState, paypalEmail: e.target.value }))} required />
               </>
             )}
             {formData.paymentMethod === '3' && (

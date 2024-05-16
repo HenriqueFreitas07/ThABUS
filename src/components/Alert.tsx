@@ -5,28 +5,31 @@ const MySwal = withReactContent(Swal)
 
 
 
-function AlertError(Message: string, title = "Oops...") {
+function AlertError(Message: string, title = "Oops...",callBack?:()=>void) {
     MySwal.fire({
         icon: 'error',
         title: title,
         text: Message,
-        heightAuto: false
+        heightAuto: false,
+        didClose:callBack
     })
 }
-function AlertInfo(Message: string, title = "Info") {
+function AlertInfo(Message: string, title = "Info",callBack?:()=>void) {
     MySwal.fire({
         icon: 'info',
         title: title,
         text: Message,
-        heightAuto: false
+        heightAuto: false,
+        didClose:callBack
     })
 }
-function AlertSuccess(Message: string, title = "Yay!") {
+function AlertSuccess(Message: string, title = "Yay!",callBack?:()=>void) {
     MySwal.fire({
         icon: 'success',
         title: title,
         text: Message,
-        heightAuto: false
+        heightAuto: false,
+        didClose:callBack
     })
 }
 function ToastError(Message: string, title = "Oops...") {

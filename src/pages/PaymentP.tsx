@@ -91,10 +91,15 @@ const PaymentP: React.FC = () => {
   return (
     <IonPage className="">
       <IonContent fullscreen className="p-2">
+        <div className="w-full bg-gradient-to-b relative h-[100px] text-center align-text-bottom gradient-blue" >
+          <div className="absolute bottom-3 left-[50%] translate-x-[-50%] text-lg">
+            NFC Activated
+          </div>
+        </div>
         <IonSegment
           color="warning"
           value={activeSegment.toString()}
-          className="px-6 pt-20 "
+          className="px-6 pt-12 "
           swipeGesture={true}
         >
           <IonSegmentButton
@@ -164,7 +169,7 @@ const PaymentP: React.FC = () => {
               </div>
             ))}
             <div
-               onClick={(e )=>{e.preventDefault(); history.push("/PaymentCards")}}
+              onClick={(e) => { e.preventDefault(); history.push("/PaymentCards") }}
               className={` bg-light-blue-200 border-blue dark:border-white border-2 rounded-md w-4/5 h-full text-center dark:text-white text-blue my-2 p-2 mx-auto`}
             >
               <Icon name="br-plus" className="mx-auto p-1" />
@@ -184,7 +189,7 @@ const PaymentP: React.FC = () => {
             </div>
           </div>
           <div
-             onClick={(x )=>{x.preventDefault(); history.push("/BuyPass")}}
+            onClick={(x) => { x.preventDefault(); history.push("/BuyPass") }}
             className={`w-full bg-transparent text-blue dark:text-white dark:border-white border-blue border-2 text-xl text-center p-3 my-4 rounded-md hover:shadow-md ${selectedCard == -1 ? "" : "hidden"}`}>
             <Icon name="br-plus" className="mx-auto" />
           </div>
