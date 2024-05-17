@@ -70,9 +70,6 @@ const RealTime = () => {
           <div className=" z-10 w-5/6 p-4 pt-0 mt-4 bg-blue absolute top-0 left-[50%] translate-x-[-50%]   border-2 rounded-md border-orange flex ">
             <IonInput
               ref={ref}
-              onIonChange={(event: any) => {
-                setBusCode(event.detail.value);
-              }}
               value={passingCode()}
               className="text-white mt-2 "
               color="warning"
