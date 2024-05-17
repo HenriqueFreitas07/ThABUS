@@ -1,6 +1,6 @@
 import { IonContent, IonInput, IonPage } from "@ionic/react";
 import GoogleMap from "../components/GoogleMap";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
 
 import Icon from "../components/Icon";
@@ -13,36 +13,40 @@ const RealTime = () => {
     lat: number;
     lng: number;
   }>();
-
+  const ref = createRef<HTMLIonInputElement>();
   const [search, setSearch] = useState<string | null>();
-  const [busCode, setBusCode] = useState<string>("");
   let selected = false;
   const allCodes = data.busStops.map((busStop) => busStop.code);
 
   const changeBusCode = () => {
+    const busCode = ref.current!.value as string;
     if (!allCodes.includes(busCode)) {
       AlertError("Bus Code not found");
       setSearch(null);
-      return
+      return;
     }
-    console.log(busCode);
     setSearch(busCode);
+    //clean the input
     writeToLocalStorage("search", null);
   };
 
-  const passingCode = (): void => {
-    setBusCode(readFromLocalStorage("search"));
+  const passingCode = (): string => {
+    const busCodeTemp = readFromLocalStorage("search");
+    if (busCodeTemp) {
+      return busCodeTemp;
+    }
+    return "";
   };
 
   const fillBusCode = (code: string, name: string) => {
-    setBusCode(code)
-    changeBusCode();
+    //set the input with the code
+    ref.current!.value = code;
+    console.log(ref.current);
     ToastInfo(code, name);
   };
 
   useEffect(() => {
     if (!coordinates && !selected) {
-      console.log(coordinates, selected);
       const getGeolocation = async () => {
         try {
           const position = await Geolocation.getCurrentPosition();
@@ -65,10 +69,11 @@ const RealTime = () => {
         <div className="w-full h-full overflow-y-clip relative">
           <div className=" z-10 w-5/6 p-4 pt-0 mt-4 bg-blue absolute top-0 left-[50%] translate-x-[-50%]   border-2 rounded-md border-orange flex ">
             <IonInput
+              ref={ref}
               onIonChange={(event: any) => {
                 setBusCode(event.detail.value);
               }}
-              value={busCode}
+              value={passingCode()}
               className="text-white mt-2 "
               color="warning"
               labelPlacement="floating"
