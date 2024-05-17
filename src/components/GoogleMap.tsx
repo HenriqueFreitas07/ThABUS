@@ -3,12 +3,10 @@ import {
   Map,
   AdvancedMarker,
   Pin,
-  InfoWindow,
   AdvancedMarkerProps,
 } from "@vis.gl/react-google-maps";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Icon from "./Icon";
-import { ToastInfo } from "./Alert";
 import data from "../data.json";
 
 <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js"></script>
@@ -20,111 +18,11 @@ type GoogleMapProps = {
   // Define props for the component here
   geolocation?: { lat: number; lng: number };
   search?: string | null;
+  onClickMarker: (code: string,name:string) => void;
 };
-// const stops = [
-//   {
-//     id: 1,
-//     name: "Aveiro Hospital Bus Stop",
-//     pinBg: "#333A76",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4723",
-//     position: { lat: 40.635, lng: -8.659 },
-//     scale: 1
-//   },
-//   {
-//     id: 2,
-//     name: "Aveiro Train Station Bus Stop",
-//     pinBg: "#333A74",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4721",
-//     position: { lat: 40.64427, lng: -8.64554 },
-//     scale: 1
-//   },
-//   {
-//     id: 3,
-//     name: "Aveiro University Bus Stop",
-//     pinBg: "#333A75",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4722",
-//     position: { lat: 40.629087, lng: -8.65787 },
-//     scale: 1
-//   },
-//   {
-//     id: 4,
-//     name: "Casa das Framboesas",
-//     pinBg: "#333A78",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4725",
-//     position: { lat: 40.6441, lng: -8.6505 },
-//     scale: 1
-//   },
-//   {
-//     id: 5,
-//     name: "Fonte de Esgueira",
-//     pinBg: "#333A82",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4729",
-//     position: { lat: 40.6385, lng: -8.6342 },
-//     scale: 1
-//   },
-//   {
-//     id: 6,
-//     name: "Igreja de Esgueira",
-//     pinBg: "#333A81",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4728",
-//     position: { lat: 40.6399, lng: -8.6364 },
-//     scale: 1
-//   },
-//   {
-//     id: 7,
-//     name: "Gen. Costa Cascais",
-//     pinBg: "#333A80",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4727",
-//     position: { lat: 40.6445, lng: -8.6533 },
-//     scale: 1
-//   },
-//   {
-//     id: 8,
-//     name: "Aveiro Old Prison Bus Stop",
-//     pinBg: "#333A77",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4724",
-//     position: { lat: 40.6415, lng: -8.65358 },
-//     scale: 1
-//   },
-//   {
-//     id: 9,
-//     name: "Aveiro Forum Bus Stop",
-//     pinBg: "#333A73",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4720",
-//     position: { lat: 40.64071895550601, lng: -8.652758379697358 },
-//     scale: 1
-//   },
-//   {
-//     id: 10,
-//     name: "Tanques de Esgueira",
-//     pinBg: "#333A79",
-//     glyphColor: "#FFFFFF",
-//     boderColor: "#FFFFFF",
-//     code: "QW-4726",
-//     position: { lat: 40.6387, lng: -8.6341 },
-//     scale: 1
-//   },
-// ];
 
-export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
+
+export default function GoogleMap({ geolocation, search, onClickMarker }: GoogleMapProps) {
   const [newCenter, setMapCenter] = useState<{ lat: number; lng: number }>({
     lat: 40.63069610757116,
     lng: -8.657316587947273,
@@ -135,7 +33,7 @@ export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
 
 
   const generateRandomMarkers = () => {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < busStops.length; i++) {
       const { lat, lng } = addDistToLatLng(
         newCenter.lat,
         newCenter.lng,
@@ -144,7 +42,7 @@ export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
       );
       const marker: AdvancedMarkerProps = {
         position: { lat, lng },
-        title: `QW-${i + 4720}`,
+        title: `${busStops[i].code}`,
       };
 
       Allmarkers.push(marker);
@@ -205,7 +103,7 @@ export default function GoogleMap({ geolocation, search }: GoogleMapProps) {
             <AdvancedMarker
               key={index}
               position={marker.position}
-              onClick={() => ToastInfo(marker.code, marker.name)}
+              onClick={()=>{onClickMarker(marker.code,marker.name)}}
             >
               <Icon name="br-stop-circle" className='text-blue text-3xl   ' />
 
