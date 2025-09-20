@@ -24,7 +24,6 @@ Para correr a aplicação é executa-se o comando:
 
 ## Documentação
 
-Para questões adicionais estão aqui as respectivas Documentações para:
 
 | Ferramenta                 | Link                                               |
 | -------------------------- | -------------------------------------------------- |
@@ -38,13 +37,12 @@ Para questões adicionais estão aqui as respectivas Documentações para:
 
 ### Gradle
 
-O gradle é um software de automatation tool, que permite a gestão de pacotes/depêndencias e bibliotecas, tal como a compilação do código java presente no projeto. Basicamente
+O gradle é um software de automation tool, que permite a gestão de pacotes/depêndencias e bibliotecas, tal como a compilação do código java presente no projeto. Basicamente
 ajuda o processo de compilação e inclusão de depêndencias.
-Talvez seja necessário a instalação do projeto
 
 ### Capacitor
 
-O Capacitor apresenta um runtime native Android que permite aos dev's comunicarem entre JavaScript e Java nativo ou código Kotlin.
+O Capacitor apresenta um ambiente de runtime nativo para Android que permite aos developers comunicarem entre JavaScript e Java nativo ou código Kotlin.
 Os aplicativos Capacitor Android são configurados e geridos através do Android Studio.
 
 ## Compilação
@@ -96,9 +94,3 @@ ionic cap build android
 ionic cap build ios
 ```
 
-### Android Studio 
-  Depois de aberto o projeto no android studio é necessário deixar que o gradle instale todas as depêndencias necessárias para o projecto.Convêm também ter um emulador que 
-  geralmente vem instalado em conjunto com o android studio. 
-
-  ATÊNÇÃO QUE O PROJETO NÃO PODE TER UM CAMINHO ABSOLUTO QUE INCLUA CARACTERES QUE NÃO SEJAM ASCII.
-  ATÊNÇÃO QUE O PROJETO NÃO PODE TER UM CAMINHO ABSOLUTO QUE INCLUA CARACTERES QUE NÃO SEJAM ASCII.
