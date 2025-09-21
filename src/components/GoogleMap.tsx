@@ -18,7 +18,7 @@ type GoogleMapProps = {
   // Define props for the component here
   geolocation?: { lat: number; lng: number };
   search?: string | null;
-  onClickMarker: (code: string,name:string) => void;
+  onClickMarker: (code: string, name: string) => void;
 };
 
 
@@ -76,7 +76,7 @@ export default function GoogleMap({ geolocation, search, onClickMarker }: Google
   }
   return (
     <>
-      <APIProvider apiKey="AIzaSyABN7IX_NnN3Io35DMphYiHmHg2NsHd7zQ">
+      <APIProvider apiKey="">
         <Map
           mapId={"fcdc1a0f0ad84c5e"}
           defaultCenter={!geolocation ? newCenter : geolocation}
@@ -103,7 +103,7 @@ export default function GoogleMap({ geolocation, search, onClickMarker }: Google
             <AdvancedMarker
               key={index}
               position={marker.position}
-              onClick={()=>{onClickMarker(marker.code,marker.name)}}
+              onClick={() => { onClickMarker(marker.code, marker.name) }}
             >
               <Icon name="br-stop-circle" className='text-blue text-3xl   ' />
 
